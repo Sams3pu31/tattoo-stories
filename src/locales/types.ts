@@ -23,7 +23,13 @@ export type Translation = {
     aboutPeople: string
     forPeople: string
 }
-
+    intro: {
+  eyebrow: string
+  title: string
+  lead: string
+  text: string
+  note: string
+}
     navigation: {
     intro: string
     foundation: string
