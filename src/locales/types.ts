@@ -57,6 +57,36 @@ export type Translation = {
     text: string
   }
 
+  consultation: {
+    eyebrow: string
+    title: string
+    lead: string
+    prompt: string
+    final: string
+  }
+
+  fitting: {
+    eyebrow: string
+    title: string
+    lead: string
+    text: string
+    final: string
+  }
+
+  session: {
+    eyebrow: string
+    title: string
+    lead: string
+    text: string
+    final: string
+  }
+reviews: {
+  eyebrow: string
+  title: string
+  lead: string
+  text: string
+  final: string
+}
   navigation: {
     intro: string
     foundation: string

@@ -1,0 +1,207 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/functions' as fn;
+@use '../../styles/abstracts/breakpoints' as bp;
+
+.reviews {
+    width: 100%;
+    padding-block: vars.$space-4xl vars.$space-5xl;
+    overflow: hidden;
+    background: var(--color-background);
+    color: var(--color-text);
+}
+
+.container,
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.container {
+    gap: 56px;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.eyebrow {
+    font-family: vars.$font-body;
+    font-size: fn.rem(10);
+    font-weight: vars.$font-weight-semibold;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.title {
+    max-width: 12ch;
+    font-family: vars.$font-display;
+    font-size: fn.fluid(64, 138);
+    font-weight: vars.$font-weight-regular;
+    line-height: 0.82;
+    letter-spacing: -0.035em;
+}
+
+.lead {
+    max-width: 46ch;
+    font-family: vars.$font-body;
+    font-size: fn.fluid(19, 28);
+    font-weight: vars.$font-weight-medium;
+    line-height: 1.45;
+}
+
+.track {
+    display: flex;
+    gap: 28px;
+    width: 100%;
+    margin-block: 72px;
+    padding-inline: vars.$page-padding-mobile;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.review {
+    flex: 0 0 min(82vw, 360px);
+    min-height: 260px;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    background: var(--color-background-light);
+    scroll-snap-align: center;
+    opacity: 0;
+    transform: translateY(38px) rotate(-2deg);
+}
+
+.review:nth-child(2) {
+    transform: translateY(38px) rotate(2deg);
+}
+
+.review:nth-child(3) {
+    transform: translateY(38px) rotate(-1deg);
+}
+
+.reviews[data-visible] .review {
+    animation: revealReview 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reviews[data-visible] .review:nth-child(2) {
+    animation-delay: 180ms;
+}
+
+.reviews[data-visible] .review:nth-child(3) {
+    animation-delay: 360ms;
+}
+
+.avatar {
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 28px;
+    border-radius: 50%;
+    background: var(--color-border);
+}
+
+.lines {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lines span {
+    display: block;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--color-border);
+}
+
+.lines span:nth-child(1) {
+    width: 88%;
+}
+
+.lines span:nth-child(2) {
+    width: 100%;
+}
+
+.lines span:nth-child(3) {
+    width: 74%;
+}
+
+.lines span:nth-child(4) {
+    width: 46%;
+}
+
+.footer {
+    gap: 36px;
+}
+
+.text {
+    max-width: 48ch;
+    font-family: vars.$font-body;
+    font-size: fn.fluid(16, 21);
+    line-height: 1.7;
+}
+
+.final {
+    max-width: 34ch;
+    font-family: vars.$font-body;
+    font-size: fn.fluid(20, 30);
+    font-weight: vars.$font-weight-medium;
+    line-height: 1.4;
+}
+
+@keyframes revealReview {
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+@include bp.tablet {
+    .reviews {
+        padding-block: vars.$space-5xl;
+    }
+
+    .container {
+        gap: 72px;
+    }
+
+    .track {
+        gap: 36px;
+        padding-inline: vars.$page-padding-tablet;
+    }
+
+    .review {
+        flex-basis: 390px;
+        min-height: 280px;
+    }
+}
+
+@include bp.laptop {
+    .track {
+        justify-content: center;
+        overflow: visible;
+        padding-inline: vars.$page-padding-desktop;
+    }
+
+    .review {
+        flex-basis: 360px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .review {
+        opacity: 1;
+        transform: none;
+        animation: none !important;
+    }
+}
