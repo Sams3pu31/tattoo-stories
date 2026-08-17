@@ -1,4 +1,5 @@
 import Header from '../components/layout/Header/Header'
+import Booking from '../sections/Booking/Booking'
 import Consultation from '../sections/Consultation/Consultation'
 import FinalCTA from '../sections/FinalCTA/FinalCTA'
 import Fitting from '../sections/Fitting/Fitting'
@@ -26,6 +27,7 @@ function App() {
         <Session />
         <Reviews />
         <FinalCTA />
+        <Booking />
       </main>
     </>
   )

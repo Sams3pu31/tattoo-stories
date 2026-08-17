@@ -1,0 +1,301 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/functions' as fn;
+@use '../../styles/abstracts/breakpoints' as bp;
+
+.booking {
+    width: 100%;
+    padding-block: vars.$space-4xl vars.$space-5xl;
+    background: var(--color-background-light);
+    color: var(--color-text);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.eyebrow {
+    font-family: vars.$font-body;
+    font-size: fn.rem(10);
+    font-weight: vars.$font-weight-semibold;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.title {
+    font-family: vars.$font-display;
+    font-size: fn.fluid(70, 150);
+    font-weight: vars.$font-weight-regular;
+    line-height: 0.82;
+    letter-spacing: -0.035em;
+}
+
+.lead {
+    max-width: 44ch;
+    font-family: vars.$font-body;
+    font-size: fn.fluid(16, 21);
+    line-height: 1.65;
+    color: var(--color-text-muted);
+}
+
+.layout {
+    display: grid;
+    gap: 56px;
+}
+
+.calendar {
+    width: 100%;
+}
+
+.calendarHeader {
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 34px;
+}
+
+.month {
+    text-align: center;
+    font-family: vars.$font-body;
+    font-size: fn.fluid(17, 22);
+    font-weight: vars.$font-weight-medium;
+    text-transform: capitalize;
+}
+
+.monthButton {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    transition:
+        background-color vars.$transition-fast,
+        transform vars.$transition-fast;
+
+    &:hover {
+        background: var(--control-hover-background);
+        transform: scale(1.05);
+    }
+
+    &:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: 3px;
+    }
+}
+
+.weekdays,
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.weekdays {
+    margin-bottom: 12px;
+}
+
+.weekdays span {
+    padding-block: 8px;
+    text-align: center;
+    font-family: vars.$font-body;
+    font-size: fn.rem(10);
+    font-weight: vars.$font-weight-semibold;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.day,
+.empty {
+    aspect-ratio: 1;
+}
+
+.day {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-text);
+    font-family: vars.$font-body;
+    font-size: fn.fluid(13, 16);
+    cursor: pointer;
+    transition:
+        background-color vars.$transition-fast,
+        color vars.$transition-fast,
+        transform vars.$transition-fast;
+
+    &:not(:disabled):hover {
+        background: var(--control-hover-background);
+        transform: scale(0.92);
+    }
+
+    &:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: -4px;
+    }
+
+    &:disabled {
+        color: var(--color-text-muted);
+        opacity: 0.26;
+        cursor: default;
+    }
+
+    &[data-today] {
+        box-shadow: inset 0 0 0 1px var(--color-border);
+    }
+
+    &[data-selected] {
+        background: var(--color-text);
+        color: var(--color-background);
+    }
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.selected {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--color-border);
+
+    span {
+        font-family: vars.$font-body;
+        font-size: fn.rem(10);
+        font-weight: vars.$font-weight-semibold;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+    }
+
+    strong {
+        font-family: vars.$font-body;
+        font-size: fn.fluid(18, 24);
+        font-weight: vars.$font-weight-medium;
+    }
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    > span {
+        font-family: vars.$font-body;
+        font-size: fn.rem(11);
+        font-weight: vars.$font-weight-semibold;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 15px 0;
+        border: 0;
+        border-bottom: 1px solid var(--color-border);
+        border-radius: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--color-text);
+        font-family: vars.$font-body;
+        font-size: 16px;
+
+        &::placeholder {
+            color: var(--color-text-muted);
+            opacity: 0.65;
+        }
+
+        &:focus {
+            border-color: var(--color-text);
+        }
+
+        &:disabled {
+            opacity: 0.35;
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+}
+
+.submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 20px 22px;
+    border: 1px solid var(--color-border);
+    background: var(--color-text);
+    color: var(--color-background);
+    font-family: vars.$font-body;
+    font-size: 15px;
+    font-weight: vars.$font-weight-semibold;
+
+    &:disabled {
+        opacity: 0.32;
+        cursor: not-allowed;
+    }
+}
+
+.note {
+    text-align: center;
+    font-family: vars.$font-body;
+    font-size: fn.rem(10);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+@include bp.tablet {
+    .booking {
+        padding-block: vars.$space-5xl;
+    }
+
+    .container {
+        gap: 96px;
+    }
+
+    .layout {
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr);
+        align-items: start;
+        gap: 72px;
+    }
+}
+
+@include bp.laptop {
+    .booking {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+    }
+
+    .layout {
+        gap: 120px;
+    }
+
+    .calendar {
+        max-width: 620px;
+    }
+}

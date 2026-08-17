@@ -80,17 +80,39 @@ export type Translation = {
     text: string
     final: string
   }
-reviews: {
-  eyebrow: string
-  title: string
-  lead: string
-  text: string
-  final: string
-}
-finalCta: {
-  title: string
-  action: string
-}
+
+  reviews: {
+    eyebrow: string
+    title: string
+    lead: string
+    text: string
+    final: string
+  }
+
+  finalCta: {
+    title: string
+    action: string
+  }
+
+  booking: {
+    eyebrow: string
+    title: string
+    lead: string
+    previousMonth: string
+    nextMonth: string
+    selectedDate: string
+    chooseDate: string
+    time: string
+    timePlaceholder: string
+    name: string
+    namePlaceholder: string
+    contact: string
+    contactPlaceholder: string
+    message: string
+    messagePlaceholder: string
+    submit: string
+  }
+
   navigation: {
     intro: string
     foundation: string
