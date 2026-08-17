@@ -15,7 +15,7 @@ export const en: Translation = {
 
   hero: {
     title: 'Stories',
-    subtitle: 'through tattoos',
+    subtitle: 'told in tattoos',
     aboutPeople: 'about people',
     forPeople: 'for people',
   },
@@ -23,10 +23,10 @@ export const en: Translation = {
   intro: {
     eyebrow: 'About',
     title: 'I’m Anna',
-    lead: 'Tattoos created around the person.',
+    lead: 'Tattoos designed around the person.',
     text:
-      'Tattoos about people and for people. I don’t copy other artists’ work. I don’t adapt someone else’s designs.',
-    note: 'Every piece starts with a conversation.',
+      'Tattoos about people, made for people. I don’t copy other artists’ work. I don’t rework someone else’s designs.',
+    note: 'Every tattoo starts with a conversation.',
   },
 
   stories: {
@@ -34,12 +34,12 @@ export const en: Translation = {
     categories: {
       important: 'About what matters',
       favorite: 'About what we love',
-      unnamed: 'About what has no name',
+      unnamed: 'About things with no name',
     },
     captions: {
       books: 'about favorite books',
       cartoons: 'about childhood cartoons',
-      era: 'about the events of an entire era',
+      era: 'about moments that defined an era',
     },
     previous: 'Previous work',
     next: 'Next work',
@@ -47,10 +47,10 @@ export const en: Translation = {
 
   foundation: {
     title: 'Foundation',
-    lead: 'Every piece starts with a conversation.',
+    lead: 'Every tattoo starts with a conversation.',
     paragraphs: [
-      'You can come with a finished idea or with no idea at all.',
-      'You can come with a story. You can simply say: “I have no idea how to turn this into a drawing.”',
+      'You can come with a clear idea or no idea at all.',
+      'You can come with a story. Or just say: “I have no idea how to turn this into an image.”',
     ],
   },
 
@@ -59,58 +59,73 @@ export const en: Translation = {
     title: 'From scratch.',
     lead: 'No ready-made designs. No copies of other tattoos.',
     text:
-      'First, we figure out what you want to say. Then we decide what it should look like.',
+      'First, we figure out what you want to say. Then we figure out what it should look like.',
   },
+
   consultation: {
-  eyebrow: 'Consultation',
-  title: 'No idea required.',
-  lead: 'You only need to tell me what matters to you.',
-  prompt: 'Show me twenty random images. Bring me one strange thought.',
-  final: 'I’ll ask questions, gather it all together and translate it from human into tattoo.',
-},
-fitting: {
-  eyebrow: 'Fitting',
-  title: 'Like clothing.',
-  lead: 'Only more serious.',
-  text: 'A tattoo should fit like the perfect piece of clothing — comfortable, versatile, flattering and made for the body it lives on.',
-  final: 'If it does none of that, it becomes a mark that works against the body. An indistinct ink rash.',
-},
-session: {
-  eyebrow: 'Session',
-  title: 'You should feel at ease.',
-  lead: 'Cleanliness, sterility and quality are the baseline.',
-  text: 'Comfortable clothes, your favorite podcast, a book, knitting, a snack — bring whatever helps you feel comfortable during the session.',
-  final: 'I’ll take care of everything else.',
-},
-reviews: {
-  eyebrow: 'Reviews',
-  title: 'No marketing nonsense.',
-  lead: 'This is where “individual approach” is supposed to go. But that’s marketing nonsense.',
-  text: 'These people came to me voluntarily. Some came back and stayed for good.',
-  final: 'I consider that a convincing argument.',
-},
-finalCta: {
-  title: 'So, what’s going on in your head?',
-  action: 'Tell me',
-},
-booking: {
-  eyebrow: 'Booking',
-  title: 'Choose a day.',
-  lead: 'The date is just the beginning. We’ll confirm the time and details together.',
-  previousMonth: 'Previous month',
-  nextMonth: 'Next month',
-  selectedDate: 'Selected date',
-  chooseDate: 'Choose a day first',
-  time: 'Preferred time',
-  timePlaceholder: 'For example, 14:00',
-  name: 'Your name',
-  namePlaceholder: 'Name',
-  contact: 'How can I reach you',
-  contactPlaceholder: 'Telegram, phone or e-mail',
-  message: 'What’s on your mind',
-  messagePlaceholder: 'An idea, a story, or simply a collection of thoughts.',
-  submit: 'Send request',
-},
+    eyebrow: 'Consultation',
+    title: 'You don’t need an idea.',
+    lead: 'Just tell me what matters to you.',
+    prompt: 'Bring twenty random images. Bring one strange thought.',
+    final:
+      'I’ll ask questions, pull it all together, and translate it from human into tattoo language.',
+  },
+
+  fitting: {
+    eyebrow: 'Fitting',
+    title: 'Like trying on clothes.',
+    lead: 'Only more serious.',
+    text:
+      'A tattoo should fit like your best clothes do — comfortable, versatile, flattering, and in tune with your body.',
+    final:
+      'If it doesn’t, it’s just a mark working against the body. A blotchy little ink rash.',
+  },
+
+  session: {
+    eyebrow: 'Session',
+    title: 'You should feel at ease.',
+    lead: 'Cleanliness, sterility, and quality are a given.',
+    text:
+      'Wear something comfortable. Bring your favorite podcast, a book, your knitting, a snack — anything that helps you settle in.',
+    final: 'I’ll take care of the rest.',
+  },
+
+  reviews: {
+    eyebrow: 'Reviews',
+    title: 'No marketing fluff.',
+    lead:
+      'This is where I’m supposed to say “a personalized approach.” But that’s marketing fluff.',
+    text:
+      'These people chose to come to me. Some came back. Some never really left.',
+    final: 'I’d call that pretty convincing.',
+  },
+
+  finalCta: {
+    title: 'So, what’s in your head?',
+    action: 'Tell me',
+  },
+
+  booking: {
+    eyebrow: 'Booking',
+    title: 'Pick a day.',
+    lead:
+      'The date is just a starting point. We’ll work out the time and details together.',
+    previousMonth: 'Previous month',
+    nextMonth: 'Next month',
+    selectedDate: 'Your date',
+    chooseDate: 'Pick a day first',
+    time: 'Preferred time',
+    timePlaceholder: 'For example, 14:00',
+    name: 'What should I call you?',
+    namePlaceholder: 'Name',
+    contact: 'Best way to reach you',
+    contactPlaceholder: 'Telegram, phone, or email',
+    message: 'What’s on your mind?',
+    messagePlaceholder:
+      'An idea, a story, or just a bunch of thoughts — anything works.',
+    submit: 'Send booking request',
+  },
+
   navigation: {
     intro: 'About',
     foundation: 'Foundation',
