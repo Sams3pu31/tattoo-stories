@@ -1,10 +1,10 @@
 import Header from '../components/layout/Header/Header'
 
+import Foundation from '../sections/Foundation/Foundation'
 import Hero from '../sections/Hero/Hero'
 import Intro from '../sections/Intro/Intro'
-import Foundation from '../sections/Foundation/Foundation'
+import Sketch from '../sections/Sketch/Sketch'
 import Stories from '../sections/Stories/Stories'
-
 
 
 function App() {
@@ -14,9 +14,14 @@ function App() {
 
       <main>
         <Hero />
+
         <Intro />
+
         <Stories />
+
         <Foundation />
+
+        <Sketch />
       </main>
     </>
   )

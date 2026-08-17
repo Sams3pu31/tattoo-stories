@@ -1,8 +1,4 @@
-// ========================================
 // COLORS
-// Static Sass tokens
-// ========================================
-
 $color-background: #f7f2ef;
 $color-background-light: #fbf8f6;
 $color-background-dark: #302c2c;
@@ -14,18 +10,12 @@ $color-text-muted: #aaa39e;
 $color-border: rgba(28, 25, 25, 0.15);
 $color-overlay: rgba(0, 0, 0, 0.45);
 
-// ========================================
 // TYPOGRAPHY
-// ========================================
-
 $font-display: 'UrbanSlavic', 'Arial Narrow', sans-serif;
 $font-body: 'Montserrat', Arial, sans-serif;
 $font-accent: 'Montserrat', Arial, sans-serif;
 
-// ========================================
 // FONT WEIGHTS
-// ========================================
-
 $font-weight-thin: 100;
 $font-weight-extra-light: 200;
 $font-weight-light: 300;
@@ -36,20 +26,19 @@ $font-weight-bold: 700;
 $font-weight-extra-bold: 800;
 $font-weight-black: 900;
 
-// ========================================
 // LAYOUT
-// ========================================
-
 $container-max-width: 1440px;
 
-$page-padding-mobile: 20px;
+/*
+ * Было 20px.
+ * На mobile делаем чуть больше воздуха.
+ */
+$page-padding-mobile: 28px;
+
 $page-padding-tablet: 32px;
 $page-padding-desktop: 64px;
 
-// ========================================
 // SPACING
-// ========================================
-
 $space-xs: 4px;
 $space-sm: 8px;
 $space-md: 16px;
@@ -60,27 +49,18 @@ $space-3xl: 64px;
 $space-4xl: 96px;
 $space-5xl: 128px;
 
-// ========================================
 // BORDER RADIUS
-// ========================================
-
 $radius-sm: 4px;
 $radius-md: 8px;
 $radius-lg: 16px;
 $radius-round: 999px;
 
-// ========================================
 // TRANSITIONS
-// ========================================
-
 $transition-fast: 180ms ease;
 $transition-base: 300ms ease;
 $transition-slow: 600ms cubic-bezier(0.22, 1, 0.36, 1);
 
-// ========================================
 // Z-INDEX
-// ========================================
-
 $z-background: -1;
 $z-default: 1;
 $z-header: 100;

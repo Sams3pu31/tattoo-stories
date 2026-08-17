@@ -1,22 +1,61 @@
 import Container from '../../components/ui/Container/Container'
+import TypedText from '../../components/ui/TypedText/TypedText'
 
-import { useLanguage } from '../../hooks/useLanguage'
+import {
+  useInView,
+} from '../../hooks/useInView'
+
+import {
+  useLanguage,
+} from '../../hooks/useLanguage'
+
+import {
+  useTypingSequence,
+} from '../../hooks/useTypingSequence'
 
 import styles from './Intro.module.scss'
 
 
 function Intro() {
-  const { t } = useLanguage()
+  const { t } =
+    useLanguage()
+
+
+  const {
+    ref,
+    isInView,
+  } =
+    useInView<HTMLElement>(
+      0.15,
+    )
+
+
+  const {
+    completeStep,
+    getState,
+  } =
+    useTypingSequence(
+      isInView,
+      3,
+    )
+
 
   return (
     <section
+      ref={ref}
       className={styles.intro}
       id="intro"
       aria-labelledby="intro-title"
     >
-      <Container className={styles.container}>
-        <div className={styles.heading}>
-          <span className={styles.eyebrow}>
+      <Container
+        className={styles.container}
+      >
+        <header
+          className={styles.heading}
+        >
+          <span
+            className={styles.eyebrow}
+          >
             {t.intro.eyebrow}
           </span>
 
@@ -26,19 +65,51 @@ function Intro() {
           >
             {t.intro.title}
           </h2>
-        </div>
+        </header>
 
-        <div className={styles.content}>
+
+        <div
+          className={styles.content}
+        >
           <p className={styles.lead}>
-            {t.intro.lead}
+            <TypedText
+              text={t.intro.lead}
+              state={getState(0)}
+              speed={40}
+              startDelay={220}
+              endDelay={420}
+              onComplete={() => {
+                completeStep(0)
+              }}
+            />
           </p>
+
 
           <p className={styles.text}>
-            {t.intro.text}
+            <TypedText
+              text={t.intro.text}
+              state={getState(1)}
+              speed={38}
+              startDelay={200}
+              endDelay={450}
+              onComplete={() => {
+                completeStep(1)
+              }}
+            />
           </p>
 
+
           <p className={styles.note}>
-            {t.intro.note}
+            <TypedText
+              text={t.intro.note}
+              state={getState(2)}
+              speed={40}
+              startDelay={200}
+              endDelay={350}
+              onComplete={() => {
+                completeStep(2)
+              }}
+            />
           </p>
         </div>
       </Container>
