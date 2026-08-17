@@ -1,0 +1,109 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/functions' as fn;
+@use '../../styles/abstracts/breakpoints' as bp;
+
+.finalCta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 90svh;
+    overflow: hidden;
+    background: var(--color-background);
+    color: var(--color-text);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+    text-align: center;
+}
+
+.title {
+    max-width: 10ch;
+    font-family: vars.$font-display;
+    font-size: fn.fluid(72, 160);
+    font-weight: vars.$font-weight-regular;
+    line-height: 0.82;
+    letter-spacing: -0.04em;
+}
+
+.action {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 4px;
+    overflow: hidden;
+    color: var(--color-text);
+    font-family: vars.$font-body;
+    font-size: fn.fluid(18, 28);
+    font-weight: vars.$font-weight-medium;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 900ms ease 1800ms,
+        transform 1100ms cubic-bezier(0.22, 1, 0.36, 1) 1800ms;
+}
+
+.action::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform vars.$transition-base;
+}
+
+.arrow {
+    display: inline-block;
+    transition: transform vars.$transition-base;
+}
+
+.action:hover::after,
+.action:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.action:hover .arrow,
+.action:focus-visible .arrow {
+    transform: translateX(10px);
+}
+
+.action:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 8px;
+}
+
+.finalCta[data-visible] .action {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@include bp.tablet {
+    .container {
+        gap: 80px;
+    }
+}
+
+@include bp.laptop {
+    .finalCta {
+        min-height: 100svh;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .action {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

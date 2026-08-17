@@ -89,6 +89,10 @@ reviews: {
   text: 'These people came to me voluntarily. Some came back and stayed for good.',
   final: 'I consider that a convincing argument.',
 },
+finalCta: {
+  title: 'So, what’s going on in your head?',
+  action: 'Tell me',
+},
   navigation: {
     intro: 'About',
     foundation: 'Foundation',

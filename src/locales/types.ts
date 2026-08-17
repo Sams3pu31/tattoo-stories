@@ -87,6 +87,10 @@ reviews: {
   text: string
   final: string
 }
+finalCta: {
+  title: string
+  action: string
+}
   navigation: {
     intro: string
     foundation: string

@@ -1,5 +1,6 @@
 import Header from '../components/layout/Header/Header'
 import Consultation from '../sections/Consultation/Consultation'
+import FinalCTA from '../sections/FinalCTA/FinalCTA'
 import Fitting from '../sections/Fitting/Fitting'
 import Foundation from '../sections/Foundation/Foundation'
 import Hero from '../sections/Hero/Hero'
@@ -24,6 +25,7 @@ function App() {
         <Fitting />
         <Session />
         <Reviews />
+        <FinalCTA />
       </main>
     </>
   )
