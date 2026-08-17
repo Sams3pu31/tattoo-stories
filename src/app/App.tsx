@@ -1,3 +1,4 @@
+import Footer from '../components/layout/Footer/Footer'
 import Header from '../components/layout/Header/Header'
 import Booking from '../sections/Booking/Booking'
 import Consultation from '../sections/Consultation/Consultation'
@@ -29,6 +30,8 @@ function App() {
         <FinalCTA />
         <Booking />
       </main>
+
+      <Footer />
     </>
   )
 }
