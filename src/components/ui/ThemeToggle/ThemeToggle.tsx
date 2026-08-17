@@ -1,39 +1,60 @@
 import { useId } from 'react'
 
-import {
-  type ThemeMode,
+import type {
+  ThemeMode,
 } from '../../../context/ThemeContext'
+
+import { useLanguage } from '../../../hooks/useLanguage'
 import { useTheme } from '../../../hooks/useTheme'
 
 import styles from './ThemeToggle.module.scss'
 
+
 type ThemeOption = {
   value: ThemeMode
   icon: string
-  label: string
 }
+
 
 const themeOptions: ThemeOption[] = [
   {
     value: 'light',
     icon: '☀',
-    label: 'Светлая тема',
   },
   {
     value: 'system',
     icon: '◐',
-    label: 'Системная тема',
   },
   {
     value: 'dark',
     icon: '☾',
-    label: 'Тёмная тема',
   },
 ]
 
+
 function ThemeToggle() {
   const { theme, setTheme } = useTheme()
+  const { t } = useLanguage()
+
   const labelId = useId()
+
+
+  const getThemeLabel = (
+    value: ThemeMode,
+  ): string => {
+    switch (value) {
+      case 'light':
+        return t.common.themeLight
+
+      case 'dark':
+        return t.common.themeDark
+
+      case 'system':
+      default:
+        return t.common.themeSystem
+    }
+  }
+
 
   return (
     <div
@@ -45,22 +66,29 @@ function ThemeToggle() {
         className={styles.label}
         id={labelId}
       >
-        Тема
+        {t.common.theme}
       </span>
 
       <div className={styles.options}>
         {themeOptions.map((option) => {
-          const isActive = theme === option.value
+          const isActive =
+            theme === option.value
 
           return (
             <button
               key={option.value}
               className={styles.button}
               type="button"
-              aria-label={option.label}
+              aria-label={getThemeLabel(
+                option.value,
+              )}
               aria-pressed={isActive}
-              data-active={isActive || undefined}
-              onClick={() => setTheme(option.value)}
+              data-active={
+                isActive || undefined
+              }
+              onClick={() =>
+                setTheme(option.value)
+              }
             >
               <span aria-hidden="true">
                 {option.icon}
@@ -72,5 +100,6 @@ function ThemeToggle() {
     </div>
   )
 }
+
 
 export default ThemeToggle

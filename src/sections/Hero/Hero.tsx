@@ -1,17 +1,24 @@
 import Container from '../../components/ui/Container/Container'
 
+import { useLanguage } from '../../hooks/useLanguage'
+
 import heroImage from '../../assets/hero.png'
 
 import styles from './Hero.module.scss'
 
 function Hero() {
+  const { t } = useLanguage()
+
   return (
     <section
       className={styles.hero}
       id="hero"
       aria-labelledby="hero-title"
     >
-      <div className={styles.background} aria-hidden="true">
+      <div
+        className={styles.background}
+        aria-hidden="true"
+      >
         <img
           className={styles.image}
           src={heroImage}
@@ -24,7 +31,10 @@ function Hero() {
 
       <Container className={styles.container}>
         <div className={styles.content}>
-          <div className={styles.logoPlaceholder} aria-hidden="true">
+          <div
+            className={styles.logoPlaceholder}
+            aria-hidden="true"
+          >
             TS
           </div>
 
@@ -32,12 +42,19 @@ function Hero() {
             className={styles.title}
             id="hero-title"
           >
-            <span>Истории</span>
-            <span className={styles.titleSecondary}>через тату</span>
+            <span>
+              {t.hero.title}
+            </span>
+
+            <span className={styles.titleSecondary}>
+              {t.hero.subtitle}
+            </span>
           </h1>
 
           <p className={styles.caption}>
-            <span>про людей</span>
+            <span>
+              {t.hero.aboutPeople}
+            </span>
 
             <span
               className={styles.captionDots}
@@ -46,7 +63,9 @@ function Hero() {
               •••
             </span>
 
-            <span>для людей</span>
+            <span>
+              {t.hero.forPeople}
+            </span>
           </p>
         </div>
       </Container>

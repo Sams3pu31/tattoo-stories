@@ -1,9 +1,15 @@
 import Container from '../../ui/Container/Container'
+import LanguageSwitch from '../../ui/LanguageSwitch/LanguageSwitch'
 import ThemeToggle from '../../ui/ThemeToggle/ThemeToggle'
+
+import { useLanguage } from '../../../hooks/useLanguage'
 
 import styles from './Header.module.scss'
 
+
 function Header() {
+  const { t } = useLanguage()
+
   return (
     <header className={styles.header}>
       <Container className={styles.container}>
@@ -12,12 +18,14 @@ function Header() {
         </div>
 
         <div className={styles.actions}>
+          <LanguageSwitch />
+
           <ThemeToggle />
 
           <button
             className={styles.menuButton}
             type="button"
-            aria-label="Открыть меню"
+            aria-label={t.common.openMenu}
           >
             <span />
             <span />
@@ -27,5 +35,6 @@ function Header() {
     </header>
   )
 }
+
 
 export default Header
