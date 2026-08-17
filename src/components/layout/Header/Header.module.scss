@@ -1,132 +1,67 @@
 @use '../../../styles/abstracts/variables' as vars;
 @use '../../../styles/abstracts/breakpoints' as bp;
 
-// ========================================
-// HEADER
-// ========================================
-
 .header {
     position: fixed;
-
     z-index: calc(vars.$z-menu + 1);
-
     top: 0;
     left: 0;
-
     width: 100%;
-
     pointer-events: none;
 }
-
-// ========================================
-// CONTAINER
-// ========================================
 
 .container {
     position: relative;
-
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
     min-height: 72px;
-
-    /*
-   * НИКАКОГО mix-blend-mode.
-   *
-   * В светлой теме — нормальный тёмный UI.
-   * В тёмной — нормальный светлый UI.
-   */
     color: var(--color-text);
-
     pointer-events: none;
 }
 
-// ========================================
-// NAVIGATION COLOR
-// ========================================
-
 .container nav {
     color: var(--color-text);
-
-    /*
-   * Лёгкий противоположный ореол.
-   *
-   * На светлом фоне его почти не видно,
-   * а поверх тёмного блока / фотографии
-   * буквы не исчезают.
-   */
     text-shadow:
         0 0 2px var(--color-background),
         0 0 8px var(--color-background);
 }
 
-// ========================================
-// ACTIONS
-// ========================================
-
 .actions {
     position: relative;
     z-index: 2;
-
     display: flex;
     align-items: center;
-
     gap: 8px;
-
     margin-left: auto;
-
     flex-shrink: 0;
-
     color: var(--color-text);
-
     pointer-events: auto;
-
-    /*
-   * То же самое для RU / EN и темы.
-   */
     filter: drop-shadow(0 0 2px var(--color-background)) drop-shadow(0 0 5px var(--color-background));
 }
 
-// ========================================
-// MOBILE MENU BUTTON
-// ========================================
-
 .menuButton {
     position: relative;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     gap: 6px;
-
     width: 38px;
     height: 38px;
-
     padding: 0;
-
     flex-shrink: 0;
-
     border: 0;
-
     background: transparent;
-
     color: inherit;
-
     cursor: pointer;
-
     pointer-events: auto;
 
     span {
         display: block;
-
         width: 25px;
         height: 2px;
-
         background-color: currentColor;
-
         transition:
             transform vars.$transition-base,
             opacity vars.$transition-fast;
@@ -147,10 +82,6 @@
     }
 }
 
-// ========================================
-// MOBILE MENU OPEN
-// ========================================
-
 .header[data-menu-open] {
     .container {
         color: var(--color-text);
@@ -161,10 +92,6 @@
     }
 }
 
-// ========================================
-// TABLET
-// ========================================
-
 @include bp.tablet {
     .container {
         min-height: 78px;
@@ -174,10 +101,6 @@
         gap: 10px;
     }
 }
-
-// ========================================
-// LAPTOP / DESKTOP
-// ========================================
 
 @include bp.laptop {
     .container {

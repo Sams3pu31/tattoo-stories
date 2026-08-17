@@ -3,32 +3,19 @@
 @use '../../../styles/abstracts/mixins' as mixins;
 @use '../../../styles/abstracts/breakpoints' as bp;
 
-// ========================================
-// MOBILE MENU
-// ========================================
-
 .menu {
     position: fixed;
     z-index: vars.$z-menu;
-
     inset: 0;
-
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
     padding: 110px vars.$page-padding-mobile 32px;
-
     background-color: var(--color-background);
     color: var(--color-text);
-
     visibility: hidden;
     pointer-events: none;
-
     opacity: 0;
-
     transform: translateY(-12px);
-
     transition:
         opacity vars.$transition-base,
         transform vars.$transition-base,
@@ -39,16 +26,10 @@
     &[data-open] {
         visibility: visible;
         pointer-events: auto;
-
         opacity: 1;
-
         transform: translateY(0);
     }
 }
-
-// ========================================
-// NAVIGATION
-// ========================================
 
 .navigation {
     width: 100%;
@@ -64,9 +45,7 @@
     grid-template-columns: 34px minmax(0, 1fr);
     align-items: baseline;
     gap: 10px;
-
     padding-block: 14px;
-
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -74,9 +53,7 @@
     font-family: vars.$font-body;
     font-size: fn.rem(10);
     font-weight: vars.$font-weight-medium;
-
     letter-spacing: 0.08em;
-
     color: var(--color-text-muted);
 }
 
@@ -84,14 +61,11 @@
     @include mixins.focus-visible;
 
     display: inline-block;
-
     font-family: vars.$font-display;
     font-size: fn.fluid(42, 68);
     font-weight: vars.$font-weight-regular;
     line-height: 0.95;
-
     color: inherit;
-
     transition:
         opacity vars.$transition-fast,
         transform vars.$transition-fast;
@@ -102,22 +76,6 @@
     }
 }
 
-// ========================================
-// FOOTER
-// ========================================
-
-.footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-top: 24px;
-}
-
-// ========================================
-// TABLET
-// ========================================
-
 @include bp.tablet {
     .menu {
         padding-inline: vars.$page-padding-tablet;
@@ -127,11 +85,6 @@
         grid-template-columns: 44px minmax(0, 1fr);
     }
 }
-
-// ========================================
-// LAPTOP
-// На desktop мобильного меню вообще нет.
-// ========================================
 
 @include bp.laptop {
     .menu {

@@ -1,17 +1,8 @@
-import {
-  useLanguage,
-} from '../../../hooks/useLanguage'
-
+import { useLanguage } from '../../../hooks/useLanguage'
 import styles from './LanguageSwitch.module.scss'
 
-
 function LanguageSwitch() {
-  const {
-    language,
-    setLanguage,
-    t,
-  } = useLanguage()
-
+  const { language, setLanguage, t } = useLanguage()
 
   return (
     <div
@@ -23,16 +14,9 @@ function LanguageSwitch() {
         className={styles.button}
         type="button"
         aria-label="Русский"
-        aria-pressed={
-          language === 'ru'
-        }
-        data-active={
-          language === 'ru' ||
-          undefined
-        }
-        onClick={() => {
-          setLanguage('ru')
-        }}
+        aria-pressed={language === 'ru'}
+        data-active={language === 'ru' || undefined}
+        onClick={() => setLanguage('ru')}
       >
         RU
       </button>
@@ -41,22 +25,14 @@ function LanguageSwitch() {
         className={styles.button}
         type="button"
         aria-label="English"
-        aria-pressed={
-          language === 'en'
-        }
-        data-active={
-          language === 'en' ||
-          undefined
-        }
-        onClick={() => {
-          setLanguage('en')
-        }}
+        aria-pressed={language === 'en'}
+        data-active={language === 'en' || undefined}
+        onClick={() => setLanguage('en')}
       >
         EN
       </button>
     </div>
   )
 }
-
 
 export default LanguageSwitch

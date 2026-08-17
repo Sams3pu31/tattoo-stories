@@ -1,28 +1,11 @@
 @use 'sass:math';
 
-// ========================================
-// PX TO REM
-// ========================================
-
 @function rem($pixels, $base: 16) {
     @return math.div($pixels, $base) * 1rem;
 }
 
-// ========================================
-// FLUID SIZE
-// ========================================
-// Плавно меняет размер между mobile и desktop.
-//
-// Пример:
-// font-size: fluid(42, 120);
-//
-// На маленьком экране будет около 42px,
-// на большом — до 120px.
-// ========================================
-
 @function fluid($min-size, $max-size, $min-width: 375, $max-width: 1440) {
     $slope: math.div($max-size - $min-size, $max-width - $min-width);
-
     $intersection: -$min-width * $slope + $min-size;
 
     @return clamp(#{$min-size}px, #{$intersection}px + #{($slope * 100)}vw, #{$max-size}px);

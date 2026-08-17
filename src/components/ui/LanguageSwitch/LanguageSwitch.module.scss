@@ -1,52 +1,31 @@
 @use '../../../styles/abstracts/variables' as vars;
 @use '../../../styles/abstracts/breakpoints' as bp;
 
-// ========================================
-// LANGUAGE SWITCH
-// ========================================
-
 .switch {
     display: inline-flex;
     align-items: center;
-
     gap: 4px;
-
     flex-shrink: 0;
-
     color: inherit;
 }
-
-// ========================================
-// BUTTON
-// ========================================
 
 .button {
     display: grid;
     place-items: center;
-
     min-width: 34px;
     height: 34px;
-
     padding-inline: 7px;
-
     border: 1px solid transparent;
     border-radius: vars.$radius-round;
-
     background: transparent;
-
     color: inherit;
-
     font-family: vars.$font-body;
     font-size: 12px;
     font-weight: vars.$font-weight-bold;
     line-height: 1;
-
     letter-spacing: 0.04em;
-
     opacity: 0.72;
-
     cursor: pointer;
-
     transition:
         opacity vars.$transition-fast,
         border-color vars.$transition-fast,
@@ -64,33 +43,22 @@
 
     &[data-active] {
         opacity: 1;
-
         border-color: currentColor;
     }
 }
-
-// ========================================
-// TABLET
-// ========================================
 
 @include bp.tablet {
     .button {
         min-width: 36px;
         height: 36px;
-
         font-size: 13px;
     }
 }
-
-// ========================================
-// DESKTOP
-// ========================================
 
 @include bp.laptop {
     .button {
         min-width: 38px;
         height: 38px;
-
         font-size: 13px;
     }
 }

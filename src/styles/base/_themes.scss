@@ -1,84 +1,58 @@
-// ========================================
-// LIGHT THEME
-// ========================================
-
 :root,
 [data-theme='light'] {
     color-scheme: light;
 
-    // Page
     --color-background: #f7f2ef;
     --color-background-light: #fbf8f6;
     --color-background-dark: #302c2c;
-
-    // Text
     --color-text: #1c1919;
     --color-text-light: #f7f4f1;
     --color-text-muted: #7f7975;
-
-    // Borders
     --color-border: rgba(28, 25, 25, 0.18);
 
-    // Header
     --header-text: #1c1919;
 
-    // Controls
     --control-border: rgba(28, 25, 25, 0.22);
     --control-background: rgba(28, 25, 25, 0.04);
     --control-active-background: rgba(28, 25, 25, 0.12);
     --control-hover-background: rgba(28, 25, 25, 0.08);
     --control-text: #1c1919;
 
-    // Hero
     --hero-background: #fbf8f6;
     --hero-text: #1c1919;
     --hero-muted-text: #7f7975;
     --hero-border: rgba(28, 25, 25, 0.28);
 
-    // Foundation
     --foundation-background: #302c2c;
     --foundation-text: #f7f2ef;
     --foundation-muted: rgba(247, 242, 239, 0.52);
     --foundation-line: rgba(247, 242, 239, 0.18);
 }
 
-// ========================================
-// DARK THEME
-// ========================================
-
 [data-theme='dark'] {
     color-scheme: dark;
 
-    // Page
     --color-background: #171515;
     --color-background-light: #211e1e;
     --color-background-dark: #0f0e0e;
-
-    // Text
     --color-text: #f4f1ee;
     --color-text-light: #ffffff;
     --color-text-muted: #aaa4a0;
-
-    // Borders
     --color-border: rgba(255, 255, 255, 0.16);
 
-    // Header
     --header-text: #f4f1ee;
 
-    // Controls
     --control-border: rgba(255, 255, 255, 0.22);
     --control-background: rgba(255, 255, 255, 0.05);
     --control-active-background: rgba(255, 255, 255, 0.16);
     --control-hover-background: rgba(255, 255, 255, 0.1);
     --control-text: #f4f1ee;
 
-    // Hero
     --hero-background: #111010;
     --hero-text: #f4f1ee;
     --hero-muted-text: #aaa4a0;
     --hero-border: rgba(255, 255, 255, 0.3);
 
-    // Foundation
     --foundation-background: #0f0e0e;
     --foundation-text: #f4f1ee;
     --foundation-muted: rgba(244, 241, 238, 0.48);

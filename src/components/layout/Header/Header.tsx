@@ -1,90 +1,45 @@
-import {
-  useEffect,
-  useId,
-  useState,
-} from 'react'
-
+import { useEffect, useId, useState } from 'react'
 import { useLanguage } from '../../../hooks/useLanguage'
 import { useLockBodyScroll } from '../../../hooks/useLockBodyScroll'
-
 import Container from '../../ui/Container/Container'
 import LanguageSwitch from '../../ui/LanguageSwitch/LanguageSwitch'
 import ThemeToggle from '../../ui/ThemeToggle/ThemeToggle'
-
 import MobileMenu from '../MobileMenu/MobileMenu'
 import Navigation from '../Navigation/Navigation'
-
 import styles from './Header.module.scss'
-
 
 function Header() {
   const { t } = useLanguage()
-
-  const [
-    isMenuOpen,
-    setIsMenuOpen,
-  ] = useState(false)
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuId = useId()
 
   useLockBodyScroll(isMenuOpen)
 
-
-  const closeMenu = () => {
-    setIsMenuOpen(false)
-  }
-
-
-  const toggleMenu = () => {
-    setIsMenuOpen(
-      (current) => !current,
-    )
-  }
-
+  const closeMenu = () => setIsMenuOpen(false)
+  const toggleMenu = () => setIsMenuOpen((current) => !current)
 
   useEffect(() => {
-    if (!isMenuOpen) {
-      return
+    if (!isMenuOpen) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMenuOpen(false)
     }
 
-    const handleKeyDown = (
-      event: KeyboardEvent,
-    ) => {
-      if (event.key === 'Escape') {
-        closeMenu()
-      }
-    }
-
-    window.addEventListener(
-      'keydown',
-      handleKeyDown,
-    )
-
-    return () => {
-      window.removeEventListener(
-        'keydown',
-        handleKeyDown,
-      )
-    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isMenuOpen])
-
 
   return (
     <>
       <header
         className={styles.header}
-        data-menu-open={
-          isMenuOpen || undefined
-        }
+        data-menu-open={isMenuOpen || undefined}
       >
-        <Container
-          className={styles.container}
-        >
+        <Container className={styles.container}>
           <Navigation />
 
           <div className={styles.actions}>
             <LanguageSwitch />
-
             <ThemeToggle />
 
             <button
@@ -97,9 +52,7 @@ function Header() {
               }
               aria-expanded={isMenuOpen}
               aria-controls={menuId}
-              data-open={
-                isMenuOpen || undefined
-              }
+              data-open={isMenuOpen || undefined}
               onClick={toggleMenu}
             >
               <span />
@@ -117,6 +70,5 @@ function Header() {
     </>
   )
 }
-
 
 export default Header

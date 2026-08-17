@@ -2,204 +2,116 @@
 @use '../../styles/abstracts/functions' as fn;
 @use '../../styles/abstracts/breakpoints' as bp;
 
-// ========================================
-// SKETCH
-// ========================================
-
 .sketch {
     position: relative;
-
     width: 100%;
-
     padding-block: vars.$space-4xl vars.$space-5xl;
-
     overflow: hidden;
-
     background-color: var(--color-background);
-
     color: var(--color-text);
-
     transition:
         background-color vars.$transition-slow,
         color vars.$transition-base;
 }
 
-// ========================================
-// CONTAINER
-// ========================================
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: 64px;
-
     width: 100%;
-
     text-align: center;
 }
-
-// ========================================
-// HEADING
-// ========================================
 
 .heading {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: 20px;
-
     width: 100%;
 }
 
-// ========================================
-// EYEBROW
-// ========================================
-
 .eyebrow {
     font-family: vars.$font-body;
-
     font-size: fn.rem(10);
     font-weight: vars.$font-weight-semibold;
     line-height: 1;
-
     letter-spacing: 0.18em;
-
     text-transform: uppercase;
-
     color: var(--color-text-muted);
 }
 
-// ========================================
-// TITLE
-// ========================================
-
 .title {
     max-width: 100%;
-
     font-family: vars.$font-display;
-
     font-size: fn.fluid(76, 156);
-
     font-weight: vars.$font-weight-regular;
-
     line-height: 0.78;
-
     letter-spacing: -0.035em;
-
     color: var(--color-text);
 }
-
-// ========================================
-// CONTENT
-// ========================================
 
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 100%;
     max-width: 760px;
 }
 
-// ========================================
-// LEAD
-// ========================================
-
 .lead {
     max-width: 30ch;
-
     margin: 0;
-
     font-family: vars.$font-body;
-
     font-size: fn.fluid(20, 32);
-
     font-weight: vars.$font-weight-medium;
-
     line-height: 1.3;
-
     letter-spacing: -0.025em;
-
     color: var(--color-text);
 }
 
-// ========================================
-// SECOND TEXT
-// ========================================
-
 .text {
     max-width: 46ch;
-
     margin: 0;
-
     font-family: vars.$font-body;
-
     font-size: fn.fluid(15, 19);
-
     font-weight: vars.$font-weight-regular;
-
     line-height: 1.7;
-
     color: var(--color-text-muted);
 }
 
-// ========================================
-// HAND-DRAWN LINE
-// ========================================
-
 .ink {
     position: relative;
-
     width: 50px;
     height: 150px;
-
     margin-block: 38px;
-
     flex-shrink: 0;
 }
 
 .inkSvg {
     display: block;
-
     width: 100%;
     height: 100%;
-
     overflow: visible;
 }
 
 .inkPath {
     fill: none;
-
     stroke: var(--color-text);
-
     stroke-width: 1.2;
-
     stroke-linecap: round;
-
     stroke-dasharray: 220;
     stroke-dashoffset: 220;
-
     opacity: 0;
 }
 
 .inkDot {
     fill: var(--color-text);
-
     opacity: 0;
-
     transform-box: fill-box;
     transform-origin: center;
-
     transform: scale(0);
 }
-
-// ========================================
-// INK STAGE
-// ========================================
 
 .sketch[data-stage='ink'] {
     .inkPath {
@@ -211,42 +123,27 @@
     }
 }
 
-// ========================================
-// AFTER INK
-//
-// Линия должна остаться нарисованной,
-// пока печатается второй текст.
-// ========================================
-
 .sketch[data-stage='text'],
 .sketch[data-stage='complete'] {
     .inkPath {
         opacity: 0.55;
-
         stroke-dashoffset: 0;
     }
 
     .inkDot {
         opacity: 1;
-
         transform: scale(1);
     }
 }
 
-// ========================================
-// ANIMATIONS
-// ========================================
-
 @keyframes drawInk {
     from {
         opacity: 0.55;
-
         stroke-dashoffset: 220;
     }
 
     to {
         opacity: 0.55;
-
         stroke-dashoffset: 0;
     }
 }
@@ -254,26 +151,19 @@
 @keyframes revealDot {
     0% {
         opacity: 0;
-
         transform: scale(0);
     }
 
     70% {
         opacity: 1;
-
         transform: scale(1.35);
     }
 
     100% {
         opacity: 1;
-
         transform: scale(1);
     }
 }
-
-// ========================================
-// TABLET
-// ========================================
 
 @include bp.tablet {
     .sketch {
@@ -286,22 +176,15 @@
 
     .ink {
         height: 175px;
-
         margin-block: 44px;
     }
 }
-
-// ========================================
-// DESKTOP
-// ========================================
 
 @include bp.laptop {
     .sketch {
         display: flex;
         align-items: center;
-
         min-height: 100svh;
-
         padding-block: vars.$space-5xl;
     }
 
@@ -319,29 +202,20 @@
 
     .ink {
         height: 190px;
-
         margin-block: 52px;
     }
 }
 
-// ========================================
-// REDUCED MOTION
-// ========================================
-
 @media (prefers-reduced-motion: reduce) {
     .inkPath {
         opacity: 0.55;
-
         stroke-dashoffset: 0;
-
         animation: none;
     }
 
     .inkDot {
         opacity: 1;
-
         transform: scale(1);
-
         animation: none;
     }
 }

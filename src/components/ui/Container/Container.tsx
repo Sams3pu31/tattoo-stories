@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-
 import styles from './Container.module.scss'
 
 type ContainerProps = {
@@ -7,19 +6,9 @@ type ContainerProps = {
   className?: string
 }
 
-function Container({
-  children,
-  className = '',
-}: ContainerProps) {
-  const classes = [
-    styles.container,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ')
-
+function Container({ children, className = '' }: ContainerProps) {
   return (
-    <div className={classes}>
+    <div className={[styles.container, className].filter(Boolean).join(' ')}>
       {children}
     </div>
   )

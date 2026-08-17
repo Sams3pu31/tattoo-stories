@@ -4,15 +4,11 @@ export type Translation = {
   common: {
     theme: string
     themeLight: string
-    themeSystem: string
     themeDark: string
-
     language: string
     booking: string
-
     openMenu: string
     closeMenu: string
-
     mainNavigation: string
     mobileNavigation: string
   }
@@ -34,19 +30,16 @@ export type Translation = {
 
   stories: {
     title: string
-
     categories: {
       important: string
       favorite: string
       unnamed: string
     }
-
     captions: {
       books: string
       cartoons: string
       era: string
     }
-
     previous: string
     next: string
   }

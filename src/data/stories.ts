@@ -6,14 +6,8 @@ export type Story = {
   id: string
   number: string
   image: string
-  categoryKey:
-    | 'important'
-    | 'favorite'
-    | 'unnamed'
-  captionKey:
-    | 'books'
-    | 'cartoons'
-    | 'era'
+  categoryKey: 'important' | 'favorite' | 'unnamed'
+  captionKey: 'books' | 'cartoons' | 'era'
 }
 
 export const stories: Story[] = [

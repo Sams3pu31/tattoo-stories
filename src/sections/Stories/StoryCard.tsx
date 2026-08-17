@@ -1,15 +1,12 @@
 import type { Story } from '../../data/stories'
 import { useLanguage } from '../../hooks/useLanguage'
-
 import styles from './Stories.module.scss'
 
 type StoryCardProps = {
   story: Story
 }
 
-function StoryCard({
-  story,
-}: StoryCardProps) {
+function StoryCard({ story }: StoryCardProps) {
   const { t } = useLanguage()
 
   return (
@@ -27,10 +24,7 @@ function StoryCard({
           decoding="async"
         />
 
-        <span
-          className={styles.number}
-          aria-hidden="true"
-        >
+        <span className={styles.number} aria-hidden="true">
           {story.number}
         </span>
       </div>

@@ -1,6 +1,5 @@
 import { navigation } from '../../../data/navigation'
 import { useLanguage } from '../../../hooks/useLanguage'
-
 import styles from './MobileMenu.module.scss'
 
 type MobileMenuProps = {
@@ -9,11 +8,7 @@ type MobileMenuProps = {
   onClose: () => void
 }
 
-function MobileMenu({
-  id,
-  isOpen,
-  onClose,
-}: MobileMenuProps) {
+function MobileMenu({ id, isOpen, onClose }: MobileMenuProps) {
   const { t } = useLanguage()
 
   return (
@@ -29,14 +24,8 @@ function MobileMenu({
       >
         <ul className={styles.list}>
           {navigation.map((item, index) => (
-            <li
-              className={styles.item}
-              key={item.id}
-            >
-              <span
-                className={styles.number}
-                aria-hidden="true"
-              >
+            <li className={styles.item} key={item.id}>
+              <span className={styles.number} aria-hidden="true">
                 {String(index + 1).padStart(2, '0')}
               </span>
 

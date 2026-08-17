@@ -4,15 +4,11 @@ export const en: Translation = {
   common: {
     theme: 'Theme',
     themeLight: 'Light theme',
-    themeSystem: 'System theme',
     themeDark: 'Dark theme',
-
     language: 'Language',
     booking: 'Book a session',
-
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
-
     mainNavigation: 'Main navigation',
     mobileNavigation: 'Mobile navigation',
   },
@@ -30,35 +26,28 @@ export const en: Translation = {
     lead: 'Tattoos created around the person.',
     text:
       'Tattoos about people and for people. I don’t copy other artists’ work. I don’t adapt someone else’s designs.',
-    note:
-      'Every piece starts with a conversation.',
+    note: 'Every piece starts with a conversation.',
   },
 
   stories: {
     title: 'Stories',
-
     categories: {
       important: 'About what matters',
       favorite: 'About what we love',
       unnamed: 'About what has no name',
     },
-
     captions: {
       books: 'about favorite books',
       cartoons: 'about childhood cartoons',
       era: 'about the events of an entire era',
     },
-
     previous: 'Previous work',
     next: 'Next work',
   },
 
   foundation: {
     title: 'Foundation',
-
-    lead:
-      'Every piece starts with a conversation.',
-
+    lead: 'Every piece starts with a conversation.',
     paragraphs: [
       'You can come with a finished idea or with no idea at all.',
       'You can come with a story. You can simply say: “I have no idea how to turn this into a drawing.”',
@@ -68,8 +57,7 @@ export const en: Translation = {
   sketch: {
     eyebrow: 'Sketch',
     title: 'From scratch.',
-    lead:
-      'No ready-made designs. No copies of other tattoos.',
+    lead: 'No ready-made designs. No copies of other tattoos.',
     text:
       'First, we figure out what you want to say. Then we decide what it should look like.',
   },

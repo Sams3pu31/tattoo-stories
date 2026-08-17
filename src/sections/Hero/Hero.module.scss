@@ -2,139 +2,88 @@
 @use '../../styles/abstracts/functions' as fn;
 @use '../../styles/abstracts/breakpoints' as bp;
 
-// ========================================
-// HERO
-// ========================================
-
 .hero {
     position: relative;
-
     width: 100%;
     min-height: 100svh;
-
     overflow: hidden;
-
     background-color: var(--hero-background);
     color: var(--hero-text);
-
     transition:
         background-color vars.$transition-slow,
         color vars.$transition-base;
 }
 
-// ========================================
-// HERO IMAGE
-// Это отдельный слой ПОВЕРХ молочного фона.
-// ========================================
-
 .visual {
     position: absolute;
-
     top: 82px;
     left: 50%;
-
     width: calc(100% - 40px);
     height: clamp(340px, 58svh, 660px);
-
     overflow: hidden;
-
     transform: translateX(-50%);
 }
 
 .image {
     display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
     object-position: center;
-
     opacity: 0.92;
 }
 
 .imageOverlay {
     position: absolute;
     inset: 0;
-
     background: linear-gradient(180deg, rgba(20, 18, 18, 0.12) 0%, rgba(20, 18, 18, 0.28) 100%);
 }
-
-// ========================================
-// CONTAINER
-// ========================================
 
 .container {
     position: relative;
     z-index: 2;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     min-height: 100svh;
-
     padding-top: 110px;
     padding-bottom: 48px;
 }
-
-// ========================================
-// CONTENT
-// ========================================
 
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 100%;
     max-width: 680px;
-
     text-align: center;
-
     color: #ffffff;
 }
-
-// ========================================
-// TEMPORARY LOGO
-// ========================================
 
 .logoPlaceholder {
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 74px;
     height: 74px;
-
     margin-bottom: 22px;
-
     border: 1px solid rgba(255, 255, 255, 0.6);
-
     font-family: vars.$font-display;
     font-size: fn.rem(22);
     font-weight: vars.$font-weight-light;
     line-height: 1;
-
     letter-spacing: 0.08em;
 }
-
-// ========================================
-// TITLE
-// ========================================
 
 .title {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     font-family: vars.$font-display;
     font-size: fn.fluid(48, 94);
     font-weight: vars.$font-weight-regular;
     line-height: 0.82;
-
     letter-spacing: -0.035em;
-
     color: inherit;
 }
 
@@ -143,25 +92,17 @@
     font-weight: vars.$font-weight-light;
 }
 
-// ========================================
-// CAPTION
-// ========================================
-
 .caption {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-
     margin-top: 28px;
-
     font-family: vars.$font-body;
     font-size: fn.fluid(11, 14);
     font-weight: vars.$font-weight-light;
     line-height: 1;
-
     letter-spacing: 0.02em;
-
     color: rgba(255, 255, 255, 0.72);
 }
 
@@ -170,14 +111,9 @@
     letter-spacing: 0.25em;
 }
 
-// ========================================
-// TABLET
-// ========================================
-
 @include bp.tablet {
     .visual {
         top: 96px;
-
         width: calc(100% - 64px);
     }
 
@@ -189,21 +125,14 @@
     .logoPlaceholder {
         width: 88px;
         height: 88px;
-
         margin-bottom: 28px;
     }
 }
 
-// ========================================
-// DESKTOP
-// ========================================
-
 @include bp.laptop {
     .visual {
         top: 88px;
-
         width: min(calc(100% - 128px), vars.$container-max-width);
-
         height: clamp(500px, 68svh, 760px);
     }
 

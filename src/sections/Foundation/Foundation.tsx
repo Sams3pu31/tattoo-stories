@@ -1,13 +1,7 @@
 import Container from '../../components/ui/Container/Container'
-
-import {
-  useLanguage,
-} from '../../hooks/useLanguage'
-
+import { useLanguage } from '../../hooks/useLanguage'
 import FoundationTimeline from './FoundationTimeline'
-
 import styles from './Foundation.module.scss'
-
 
 function Foundation() {
   const { t } = useLanguage()
@@ -20,24 +14,18 @@ function Foundation() {
     >
       <Container className={styles.container}>
         <header className={styles.heading}>
-          <h2
-            className={styles.title}
-            id="foundation-title"
-          >
+          <h2 className={styles.title} id="foundation-title">
             {t.foundation.title}
           </h2>
         </header>
 
         <FoundationTimeline
           lead={t.foundation.lead}
-          paragraphs={
-            t.foundation.paragraphs
-          }
+          paragraphs={t.foundation.paragraphs}
         />
       </Container>
     </section>
   )
 }
-
 
 export default Foundation

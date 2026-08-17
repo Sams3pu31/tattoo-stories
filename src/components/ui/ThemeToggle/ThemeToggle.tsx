@@ -1,23 +1,10 @@
-import {
-  useTheme,
-} from '../../../hooks/useTheme'
-
-import {
-  useLanguage,
-} from '../../../hooks/useLanguage'
-
+import { useLanguage } from '../../../hooks/useLanguage'
+import { useTheme } from '../../../hooks/useTheme'
 import styles from './ThemeToggle.module.scss'
 
-
 function ThemeToggle() {
-  const {
-    theme,
-    setTheme,
-  } = useTheme()
-
-  const { t } =
-    useLanguage()
-
+  const { theme, setTheme } = useTheme()
+  const { t } = useLanguage()
 
   return (
     <div
@@ -28,19 +15,10 @@ function ThemeToggle() {
       <button
         className={styles.button}
         type="button"
-        aria-label={
-          t.common.themeLight
-        }
-        aria-pressed={
-          theme === 'light'
-        }
-        data-active={
-          theme === 'light' ||
-          undefined
-        }
-        onClick={() => {
-          setTheme('light')
-        }}
+        aria-label={t.common.themeLight}
+        aria-pressed={theme === 'light'}
+        data-active={theme === 'light' || undefined}
+        onClick={() => setTheme('light')}
       >
         ☀
       </button>
@@ -48,25 +26,15 @@ function ThemeToggle() {
       <button
         className={styles.button}
         type="button"
-        aria-label={
-          t.common.themeDark
-        }
-        aria-pressed={
-          theme === 'dark'
-        }
-        data-active={
-          theme === 'dark' ||
-          undefined
-        }
-        onClick={() => {
-          setTheme('dark')
-        }}
+        aria-label={t.common.themeDark}
+        aria-pressed={theme === 'dark'}
+        data-active={theme === 'dark' || undefined}
+        onClick={() => setTheme('dark')}
       >
         ☾
       </button>
     </div>
   )
 }
-
 
 export default ThemeToggle

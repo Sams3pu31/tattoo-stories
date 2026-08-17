@@ -1,60 +1,33 @@
 @use '../abstracts/variables' as vars;
 @use '../abstracts/mixins' as mixins;
 
-// ========================================
-// DOCUMENT
-// ========================================
-
 html {
     min-width: 320px;
-
     background-color: var(--color-background);
-
     scroll-padding-top: 80px;
 }
-
-// ========================================
-// BODY
-// ========================================
 
 body {
     min-width: 320px;
     min-height: 100vh;
-
     background-color: var(--color-background);
     color: var(--color-text);
 }
-
-// ========================================
-// REACT ROOT
-// ========================================
 
 #root {
     width: 100%;
     min-height: 100vh;
 }
 
-// ========================================
-// MAIN
-// ========================================
-
 main {
     display: block;
     width: 100%;
 }
 
-// ========================================
-// SELECTION
-// ========================================
-
 ::selection {
     background-color: var(--color-background-dark);
     color: var(--color-text-light);
 }
-
-// ========================================
-// INTERACTIVE ELEMENTS
-// ========================================
 
 a,
 button,
@@ -64,25 +37,16 @@ select {
     @include mixins.focus-visible;
 }
 
-// ========================================
-// FORM ELEMENTS
-// ========================================
-
 input,
 textarea,
 select {
     width: 100%;
-
     background-color: transparent;
 }
 
 textarea {
     min-height: 120px;
 }
-
-// ========================================
-// DISABLED STATE
-// ========================================
 
 button:disabled,
 input:disabled,
@@ -92,17 +56,9 @@ select:disabled {
     opacity: 0.5;
 }
 
-// ========================================
-// IMAGE SELECTION / DRAGGING
-// ========================================
-
 img {
     user-select: none;
 }
-
-// ========================================
-// REDUCED MOTION
-// ========================================
 
 @include mixins.reduced-motion {
     html {
@@ -113,7 +69,6 @@ img {
     *::before,
     *::after {
         scroll-behavior: auto !important;
-
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
