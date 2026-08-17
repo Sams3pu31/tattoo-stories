@@ -1,0 +1,87 @@
+// ========================================
+// COLORS
+// ========================================
+
+$color-background: #f2ede8;
+$color-background-light: #f8f5f2;
+$color-background-dark: #302c2c;
+
+$color-text: #1c1919;
+$color-text-light: #f7f4f1;
+$color-text-muted: #aaa39e;
+
+$color-border: rgba(28, 25, 25, 0.15);
+
+$color-overlay: rgba(0, 0, 0, 0.45);
+
+// ========================================
+// TYPOGRAPHY
+// ========================================
+
+// Пока используем fallback.
+// Позже подключим реальные файлы шрифтов через _fonts.scss.
+
+$font-display: 'Tattoo Display', 'Arial Narrow', sans-serif;
+$font-body: 'Tattoo Body', Arial, sans-serif;
+$font-accent: 'Tattoo Accent', Georgia, serif;
+
+// ========================================
+// FONT WEIGHTS
+// ========================================
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// ========================================
+// LAYOUT
+// ========================================
+
+$container-max-width: 1440px;
+
+$page-padding-mobile: 20px;
+$page-padding-tablet: 32px;
+$page-padding-desktop: 64px;
+
+// ========================================
+// SPACING
+// ========================================
+
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-2xl: 48px;
+$space-3xl: 64px;
+$space-4xl: 96px;
+$space-5xl: 128px;
+
+// ========================================
+// BORDER RADIUS
+// ========================================
+
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 16px;
+$radius-round: 999px;
+
+// ========================================
+// TRANSITIONS
+// ========================================
+
+$transition-fast: 180ms ease;
+$transition-base: 300ms ease;
+$transition-slow: 600ms cubic-bezier(0.22, 1, 0.36, 1);
+
+// ========================================
+// Z-INDEX
+// ========================================
+
+$z-background: -1;
+$z-default: 1;
+$z-header: 100;
+$z-menu: 200;
+$z-modal: 300;

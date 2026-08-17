@@ -1,0 +1,139 @@
+@use './variables' as vars;
+@use './breakpoints' as bp;
+
+// ========================================
+// CONTAINER
+// ========================================
+
+@mixin container {
+    width: 100%;
+    max-width: vars.$container-max-width;
+    margin-inline: auto;
+    padding-inline: vars.$page-padding-mobile;
+
+    @include bp.tablet {
+        padding-inline: vars.$page-padding-tablet;
+    }
+
+    @include bp.desktop {
+        padding-inline: vars.$page-padding-desktop;
+    }
+}
+
+// ========================================
+// FLEX CENTER
+// ========================================
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// ========================================
+// ABSOLUTE FILL
+// ========================================
+
+@mixin absolute-fill {
+    position: absolute;
+    inset: 0;
+}
+
+// ========================================
+// IMAGE COVER
+// ========================================
+
+@mixin image-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+// ========================================
+// RESET BUTTON
+// ========================================
+
+@mixin reset-button {
+    padding: 0;
+    margin: 0;
+
+    border: 0;
+    outline: 0;
+    background: none;
+
+    color: inherit;
+    font: inherit;
+
+    cursor: pointer;
+}
+
+// ========================================
+// VISUALLY HIDDEN
+// Для текста, который нужен screen reader,
+// но не должен быть виден визуально.
+// ========================================
+
+@mixin visually-hidden {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+
+    border: 0;
+}
+
+// ========================================
+// TEXT TRUNCATE
+// ========================================
+
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// ========================================
+// FOCUS
+// ========================================
+
+@mixin focus-visible {
+    &:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 4px;
+    }
+}
+
+// ========================================
+// HOVER
+// Hover-эффекты включаем только там,
+// где устройство действительно умеет hover.
+// На touch-экранах они не будут "залипать".
+// ========================================
+
+@mixin hover {
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+// ========================================
+// REDUCED MOTION
+// Уважаем настройку пользователя
+// "уменьшить движение".
+// ========================================
+
+@mixin reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+        @content;
+    }
+}
