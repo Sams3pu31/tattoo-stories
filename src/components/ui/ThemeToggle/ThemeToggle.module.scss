@@ -1,5 +1,6 @@
 @use '../../../styles/abstracts/variables' as vars;
 @use '../../../styles/abstracts/mixins' as mixins;
+@use '../../../styles/abstracts/breakpoints' as bp;
 
 // ========================================
 // THEME TOGGLE
@@ -51,8 +52,8 @@
     display: grid;
     place-items: center;
 
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 50%;
 
@@ -81,5 +82,11 @@
 
         opacity: 1;
         transform: scale(1.05);
+    }
+    @include bp.tablet {
+        .button {
+            width: 34px;
+            height: 34px;
+        }
     }
 }

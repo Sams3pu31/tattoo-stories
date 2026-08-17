@@ -1,10 +1,18 @@
+import {
+  useEffect,
+  useId,
+  useState,
+} from 'react'
+
+import { useLanguage } from '../../../hooks/useLanguage'
+import { useLockBodyScroll } from '../../../hooks/useLockBodyScroll'
+
 import Container from '../../ui/Container/Container'
 import LanguageSwitch from '../../ui/LanguageSwitch/LanguageSwitch'
 import ThemeToggle from '../../ui/ThemeToggle/ThemeToggle'
 
+import MobileMenu from '../MobileMenu/MobileMenu'
 import Navigation from '../Navigation/Navigation'
-
-import { useLanguage } from '../../../hooks/useLanguage'
 
 import styles from './Header.module.scss'
 
@@ -12,33 +20,91 @@ import styles from './Header.module.scss'
 function Header() {
   const { t } = useLanguage()
 
+  const [isMenuOpen, setIsMenuOpen] =
+    useState(false)
+
+  const menuId = useId()
+
+  useLockBodyScroll(isMenuOpen)
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
+
+  const toggleMenu = () => {
+    setIsMenuOpen((current) => !current)
+  }
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return
+    }
+
+    const handleKeyDown = (
+      event: KeyboardEvent,
+    ) => {
+      if (event.key === 'Escape') {
+        closeMenu()
+      }
+    }
+
+    window.addEventListener(
+      'keydown',
+      handleKeyDown,
+    )
+
+    return () => {
+      window.removeEventListener(
+        'keydown',
+        handleKeyDown,
+      )
+    }
+  }, [isMenuOpen])
+
   return (
-    <header className={styles.header}>
-      <Container className={styles.container}>
-        <div className={styles.logo}>
-          Tattoo Stories
-        </div>
+    <>
+      <header
+        className={styles.header}
+        data-menu-open={isMenuOpen || undefined}
+      >
+        <Container className={styles.container}>
+          <div className={styles.logo}>
+            Tattoo Stories
+          </div>
 
-        <Navigation />
+          <Navigation />
 
-        <div className={styles.actions}>
-          <LanguageSwitch />
+          <div className={styles.actions}>
+            <LanguageSwitch />
+            <ThemeToggle />
 
-          <ThemeToggle />
+            <button
+              className={styles.menuButton}
+              type="button"
+              aria-label={
+                isMenuOpen
+                  ? t.common.closeMenu
+                  : t.common.openMenu
+              }
+              aria-expanded={isMenuOpen}
+              aria-controls={menuId}
+              data-open={isMenuOpen || undefined}
+              onClick={toggleMenu}
+            >
+              <span />
+              <span />
+            </button>
+          </div>
+        </Container>
+      </header>
 
-          <button
-            className={styles.menuButton}
-            type="button"
-            aria-label={t.common.openMenu}
-          >
-            <span />
-            <span />
-          </button>
-        </div>
-      </Container>
-    </header>
+      <MobileMenu
+        id={menuId}
+        isOpen={isMenuOpen}
+        onClose={closeMenu}
+      />
+    </>
   )
 }
-
 
 export default Header

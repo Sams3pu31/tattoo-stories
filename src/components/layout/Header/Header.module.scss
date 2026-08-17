@@ -8,7 +8,7 @@
 
 .header {
     position: absolute;
-    z-index: vars.$z-header;
+    z-index: calc(vars.$z-menu + 1);
 
     top: 0;
     left: 0;
@@ -18,17 +18,23 @@
     color: var(--header-text);
 
     transition: color vars.$transition-base;
+
+    &[data-menu-open] {
+        position: fixed;
+
+        color: var(--color-text);
+    }
 }
 
 // ========================================
 // CONTAINER
-// Mobile first
 // ========================================
 
 .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
 
     min-height: 72px;
 }
@@ -41,18 +47,23 @@
     position: relative;
     z-index: 2;
 
-    flex-shrink: 0;
+    flex-shrink: 1;
+
+    min-width: 0;
 
     font-family: vars.$font-display;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: vars.$font-weight-medium;
     line-height: 1;
 
     letter-spacing: 0.02em;
+
+    white-space: nowrap;
 }
 
 // ========================================
 // ACTIONS
+// Language + theme + burger
 // ========================================
 
 .actions {
@@ -61,7 +72,8 @@
 
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: flex-end;
+    gap: 7px;
 
     flex-shrink: 0;
 }
@@ -75,31 +87,46 @@
     @include mixins.focus-visible;
 
     position: relative;
-    z-index: 2;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 7px;
 
-    width: 40px;
-    height: 40px;
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
 
     color: currentColor;
 
     span {
         display: block;
 
-        width: 26px;
+        width: 24px;
         height: 1px;
 
         margin-left: auto;
 
         background-color: currentColor;
 
+        transform-origin: center;
+
         transition:
             transform vars.$transition-base,
             opacity vars.$transition-base;
+    }
+
+    &[data-open] {
+        gap: 0;
+
+        span:first-child {
+            transform: translateY(0.5px) rotate(45deg);
+        }
+
+        span:last-child {
+            transform: translateY(-0.5px) rotate(-45deg);
+        }
     }
 }
 
@@ -110,7 +137,11 @@
 @include bp.laptop {
     .container {
         display: grid;
-        grid-template-columns: auto minmax(0, 1fr) auto;
+        grid-template-columns:
+            auto
+            minmax(0, 1fr)
+            auto;
+
         align-items: center;
         column-gap: 32px;
 
@@ -119,10 +150,13 @@
 
     .logo {
         justify-self: start;
+
+        font-size: 18px;
     }
 
     .actions {
         justify-self: end;
+        gap: 12px;
     }
 
     .menuButton {
