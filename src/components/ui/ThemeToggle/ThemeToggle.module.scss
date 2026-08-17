@@ -1,5 +1,4 @@
 @use '../../../styles/abstracts/variables' as vars;
-@use '../../../styles/abstracts/mixins' as mixins;
 @use '../../../styles/abstracts/breakpoints' as bp;
 
 // ========================================
@@ -10,35 +9,11 @@
     display: inline-flex;
     align-items: center;
 
-    color: var(--control-text);
-}
+    gap: 4px;
 
-// ========================================
-// ACCESSIBLE LABEL
-// ========================================
+    flex-shrink: 0;
 
-.label {
-    @include mixins.visually-hidden;
-}
-
-// ========================================
-// OPTIONS
-// ========================================
-
-.options {
-    display: inline-flex;
-    align-items: center;
-
-    padding: 3px;
-
-    border: 1px solid var(--control-border);
-    border-radius: vars.$radius-round;
-
-    background-color: var(--control-background);
-
-    transition:
-        background-color vars.$transition-base,
-        border-color vars.$transition-base;
+    color: inherit;
 }
 
 // ========================================
@@ -46,47 +21,72 @@
 // ========================================
 
 .button {
-    @include mixins.reset-button;
-    @include mixins.focus-visible;
-
     display: grid;
     place-items: center;
 
-    width: 28px;
-    height: 28px;
+    width: 34px;
+    height: 34px;
 
+    padding: 0;
+
+    border: 1px solid transparent;
     border-radius: 50%;
 
-    font-family: vars.$font-body;
-    font-size: 15px;
+    background: transparent;
+
+    color: inherit;
+
+    font-size: 16px;
     line-height: 1;
 
-    color: var(--control-text);
+    opacity: 0.72;
 
-    opacity: 0.55;
+    cursor: pointer;
 
     transition:
-        color vars.$transition-base,
         opacity vars.$transition-fast,
-        background-color vars.$transition-fast,
+        border-color vars.$transition-fast,
         transform vars.$transition-fast;
 
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+    }
+
+    &:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: 2px;
+    }
+
     &[data-active] {
-        background-color: var(--control-active-background);
+        border-color: currentColor;
 
         opacity: 1;
     }
+}
 
-    @include mixins.hover {
-        background-color: var(--control-hover-background);
+// ========================================
+// TABLET
+// ========================================
 
-        opacity: 1;
-        transform: scale(1.05);
+@include bp.tablet {
+    .button {
+        width: 36px;
+        height: 36px;
+
+        font-size: 17px;
     }
-    @include bp.tablet {
-        .button {
-            width: 34px;
-            height: 34px;
-        }
+}
+
+// ========================================
+// DESKTOP
+// ========================================
+
+@include bp.laptop {
+    .button {
+        width: 38px;
+        height: 38px;
+
+        font-size: 17px;
     }
 }

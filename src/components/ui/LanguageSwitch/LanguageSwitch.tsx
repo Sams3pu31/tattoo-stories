@@ -1,62 +1,62 @@
-import { useId } from 'react'
-
-import { useLanguage } from '../../../hooks/useLanguage'
-
-import type { Language } from '../../../locales/types'
+import {
+  useLanguage,
+} from '../../../hooks/useLanguage'
 
 import styles from './LanguageSwitch.module.scss'
 
-type LanguageOption = {
-  value: Language
-  label: string
-}
-
-const languages: LanguageOption[] = [
-  {
-    value: 'ru',
-    label: 'RU',
-  },
-  {
-    value: 'en',
-    label: 'EN',
-  },
-]
 
 function LanguageSwitch() {
-  const { language, setLanguage, t } = useLanguage()
-  const labelId = useId()
+  const {
+    language,
+    setLanguage,
+    t,
+  } = useLanguage()
+
 
   return (
     <div
-      className={styles.switcher}
+      className={styles.switch}
       role="group"
-      aria-labelledby={labelId}
+      aria-label={t.common.language}
     >
-      <span
-        className={styles.label}
-        id={labelId}
+      <button
+        className={styles.button}
+        type="button"
+        aria-label="Русский"
+        aria-pressed={
+          language === 'ru'
+        }
+        data-active={
+          language === 'ru' ||
+          undefined
+        }
+        onClick={() => {
+          setLanguage('ru')
+        }}
       >
-        {t.common.language}
-      </span>
+        RU
+      </button>
 
-      {languages.map((item) => {
-        const isActive = language === item.value
-
-        return (
-          <button
-            key={item.value}
-            className={styles.button}
-            type="button"
-            aria-pressed={isActive}
-            data-active={isActive || undefined}
-            onClick={() => setLanguage(item.value)}
-          >
-            {item.label}
-          </button>
-        )
-      })}
+      <button
+        className={styles.button}
+        type="button"
+        aria-label="English"
+        aria-pressed={
+          language === 'en'
+        }
+        data-active={
+          language === 'en' ||
+          undefined
+        }
+        onClick={() => {
+          setLanguage('en')
+        }}
+      >
+        EN
+      </button>
     </div>
   )
 }
+
 
 export default LanguageSwitch

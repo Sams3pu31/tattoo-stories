@@ -1,7 +1,7 @@
 export type Language = 'ru' | 'en'
 
 export type Translation = {
-    common: {
+  common: {
     theme: string
     themeLight: string
     themeSystem: string
@@ -15,53 +15,60 @@ export type Translation = {
 
     mainNavigation: string
     mobileNavigation: string
-}
+  }
 
-    hero: {
+  hero: {
     title: string
     subtitle: string
     aboutPeople: string
     forPeople: string
-}
-    intro: {
-  eyebrow: string
-  title: string
-  lead: string
-  text: string
-  note: string
-}
-    foundation: {
-  title: string
-  lead: string
-
-  paragraphs: [
-    string,
-    string,
-  ]
-}
-stories: {
-  title: string
-
-  categories: {
-    important: string
-    favorite: string
-    unnamed: string
   }
 
-  captions: {
-    books: string
-    cartoons: string
-    era: string
+  intro: {
+    eyebrow: string
+    title: string
+    lead: string
+    text: string
+    note: string
   }
 
-  previous: string
-  next: string
-}
-    navigation: {
+  stories: {
+    title: string
+
+    categories: {
+      important: string
+      favorite: string
+      unnamed: string
+    }
+
+    captions: {
+      books: string
+      cartoons: string
+      era: string
+    }
+
+    previous: string
+    next: string
+  }
+
+  foundation: {
+    title: string
+    lead: string
+    paragraphs: string[]
+  }
+
+  sketch: {
+    eyebrow: string
+    title: string
+    lead: string
+    text: string
+  }
+
+  navigation: {
     intro: string
     foundation: string
     fitting: string
     session: string
     reviews: string
-    }
+  }
 }

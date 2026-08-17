@@ -1,102 +1,69 @@
-import { useId } from 'react'
+import {
+  useTheme,
+} from '../../../hooks/useTheme'
 
-import type {
-  ThemeMode,
-} from '../../../context/ThemeContext'
-
-import { useLanguage } from '../../../hooks/useLanguage'
-import { useTheme } from '../../../hooks/useTheme'
+import {
+  useLanguage,
+} from '../../../hooks/useLanguage'
 
 import styles from './ThemeToggle.module.scss'
 
 
-type ThemeOption = {
-  value: ThemeMode
-  icon: string
-}
-
-
-const themeOptions: ThemeOption[] = [
-  {
-    value: 'light',
-    icon: '☀',
-  },
-  {
-    value: 'system',
-    icon: '◐',
-  },
-  {
-    value: 'dark',
-    icon: '☾',
-  },
-]
-
-
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
-  const { t } = useLanguage()
+  const {
+    theme,
+    setTheme,
+  } = useTheme()
 
-  const labelId = useId()
-
-
-  const getThemeLabel = (
-    value: ThemeMode,
-  ): string => {
-    switch (value) {
-      case 'light':
-        return t.common.themeLight
-
-      case 'dark':
-        return t.common.themeDark
-
-      case 'system':
-      default:
-        return t.common.themeSystem
-    }
-  }
+  const { t } =
+    useLanguage()
 
 
   return (
     <div
       className={styles.toggle}
       role="group"
-      aria-labelledby={labelId}
+      aria-label={t.common.theme}
     >
-      <span
-        className={styles.label}
-        id={labelId}
+      <button
+        className={styles.button}
+        type="button"
+        aria-label={
+          t.common.themeLight
+        }
+        aria-pressed={
+          theme === 'light'
+        }
+        data-active={
+          theme === 'light' ||
+          undefined
+        }
+        onClick={() => {
+          setTheme('light')
+        }}
       >
-        {t.common.theme}
-      </span>
+        ☀
+      </button>
 
-      <div className={styles.options}>
-        {themeOptions.map((option) => {
-          const isActive =
-            theme === option.value
-
-          return (
-            <button
-              key={option.value}
-              className={styles.button}
-              type="button"
-              aria-label={getThemeLabel(
-                option.value,
-              )}
-              aria-pressed={isActive}
-              data-active={
-                isActive || undefined
-              }
-              onClick={() =>
-                setTheme(option.value)
-              }
-            >
-              <span aria-hidden="true">
-                {option.icon}
-              </span>
-            </button>
-          )
-        })}
-      </div>
+      <button
+        className={styles.button}
+        type="button"
+        aria-label={
+          t.common.themeDark
+        }
+        aria-pressed={
+          theme === 'dark'
+        }
+        data-active={
+          theme === 'dark' ||
+          undefined
+        }
+        onClick={() => {
+          setTheme('dark')
+        }}
+      >
+        ☾
+      </button>
     </div>
   )
 }

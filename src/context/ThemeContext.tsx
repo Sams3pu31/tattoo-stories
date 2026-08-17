@@ -6,119 +6,113 @@ import {
   type ReactNode,
 } from 'react'
 
-export type ThemeMode = 'light' | 'dark' | 'system'
-export type ResolvedTheme = 'light' | 'dark'
+
+export type ThemeMode =
+  | 'light'
+  | 'dark'
+
 
 type ThemeContextValue = {
   theme: ThemeMode
-  resolvedTheme: ResolvedTheme
-  setTheme: (theme: ThemeMode) => void
+  resolvedTheme: ThemeMode
+
+  setTheme: (
+    theme: ThemeMode,
+  ) => void
 }
+
+
+export const ThemeContext =
+  createContext<
+    ThemeContextValue | undefined
+  >(undefined)
+
 
 type ThemeProviderProps = {
   children: ReactNode
 }
 
-const THEME_STORAGE_KEY = 'tattoo-stories-theme'
 
-function getSystemTheme(): ResolvedTheme {
+const STORAGE_KEY =
+  'tattoo-stories-theme'
+
+
+function getInitialTheme(): ThemeMode {
   if (typeof window === 'undefined') {
     return 'light'
   }
 
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light'
-}
-
-function getInitialTheme(): ThemeMode {
-  if (typeof window === 'undefined') {
-    return 'system'
-  }
-
-  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY)
+  const savedTheme =
+    window.localStorage.getItem(
+      STORAGE_KEY,
+    )
 
   if (
     savedTheme === 'light' ||
-    savedTheme === 'dark' ||
-    savedTheme === 'system'
+    savedTheme === 'dark'
   ) {
     return savedTheme
   }
 
-  return 'system'
+  /*
+   * ВАЖНО:
+   * больше не смотрим на тему системы.
+   *
+   * Первый заход всегда LIGHT.
+   */
+  return 'light'
 }
 
-export const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 export function ThemeProvider({
   children,
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<ThemeMode>(getInitialTheme)
-  const [systemTheme, setSystemTheme] =
-    useState<ResolvedTheme>(getSystemTheme)
-
-  const resolvedTheme: ResolvedTheme =
-    theme === 'system'
-      ? systemTheme
-      : theme
-
-  // ----------------------------------------
-  // Следим за системной темой.
-  // Если пользователь изменит тему Windows/macOS,
-  // сайт тоже сможет обновиться.
-  // ----------------------------------------
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    )
-
-    const handleChange = (event: MediaQueryListEvent) => {
-      setSystemTheme(event.matches ? 'dark' : 'light')
-    }
-
-    setSystemTheme(
-      mediaQuery.matches ? 'dark' : 'light',
-    )
-
-    mediaQuery.addEventListener('change', handleChange)
-
-    return () => {
-      mediaQuery.removeEventListener(
-        'change',
-        handleChange,
-      )
-    }
-  }, [])
-
-  // ----------------------------------------
-  // Применяем тему к <html>
-  // и запоминаем выбор пользователя.
-  // ----------------------------------------
-
-  useEffect(() => {
-    const root = document.documentElement
-
-    root.dataset.theme = resolvedTheme
-
-    localStorage.setItem(
-      THEME_STORAGE_KEY,
-      theme,
-    )
-  }, [theme, resolvedTheme])
-
-  const value = useMemo<ThemeContextValue>(
-    () => ({
-      theme,
-      resolvedTheme,
-      setTheme,
-    }),
-    [theme, resolvedTheme],
+  const [
+    theme,
+    setTheme,
+  ] = useState<ThemeMode>(
+    getInitialTheme,
   )
 
+
+  useEffect(() => {
+    document.documentElement.dataset.theme =
+      theme
+
+    document.documentElement.style.colorScheme =
+      theme
+
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      theme,
+    )
+  }, [theme])
+
+
+  const value =
+    useMemo<ThemeContextValue>(
+      () => ({
+        theme,
+
+        /*
+         * Оставляем resolvedTheme,
+         * чтобы ничего другого в проекте
+         * случайно не сломалось.
+         *
+         * Теперь он просто равен theme.
+         */
+        resolvedTheme: theme,
+
+        setTheme,
+      }),
+      [theme],
+    )
+
+
   return (
-    <ThemeContext.Provider value={value}>
+    <ThemeContext.Provider
+      value={value}
+    >
       {children}
     </ThemeContext.Provider>
   )
