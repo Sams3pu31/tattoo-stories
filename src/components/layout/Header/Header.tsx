@@ -2,6 +2,8 @@ import Container from '../../ui/Container/Container'
 import LanguageSwitch from '../../ui/LanguageSwitch/LanguageSwitch'
 import ThemeToggle from '../../ui/ThemeToggle/ThemeToggle'
 
+import Navigation from '../Navigation/Navigation'
+
 import { useLanguage } from '../../../hooks/useLanguage'
 
 import styles from './Header.module.scss'
@@ -16,6 +18,8 @@ function Header() {
         <div className={styles.logo}>
           Tattoo Stories
         </div>
+
+        <Navigation />
 
         <div className={styles.actions}>
           <LanguageSwitch />

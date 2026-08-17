@@ -1,0 +1,89 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins' as mixins;
+@use '../../../styles/abstracts/breakpoints' as bp;
+
+// ========================================
+// NAVIGATION
+// Mobile-first:
+// обычная desktop-навигация на телефоне скрыта.
+// ========================================
+
+.navigation {
+    display: none;
+}
+
+// ========================================
+// LAPTOP / DESKTOP
+// ========================================
+
+@include bp.laptop {
+    .navigation {
+        display: block;
+        justify-self: center;
+    }
+
+    .list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(18px, 2vw, 36px);
+    }
+
+    .item {
+        display: block;
+    }
+
+    .link {
+        @include mixins.focus-visible;
+
+        position: relative;
+
+        display: inline-block;
+
+        padding-block: 10px;
+
+        font-family: vars.$font-body;
+        font-size: 11px;
+        font-weight: vars.$font-weight-medium;
+        line-height: 1;
+
+        letter-spacing: 0.04em;
+
+        color: currentColor;
+
+        opacity: 0.72;
+
+        transition:
+            opacity vars.$transition-fast,
+            transform vars.$transition-fast;
+
+        &::after {
+            content: '';
+
+            position: absolute;
+
+            right: 0;
+            bottom: 4px;
+            left: 0;
+
+            height: 1px;
+
+            background-color: currentColor;
+
+            transform: scaleX(0);
+            transform-origin: right center;
+
+            transition: transform vars.$transition-base;
+        }
+
+        @include mixins.hover {
+            opacity: 1;
+            transform: translateY(-1px);
+
+            &::after {
+                transform: scaleX(1);
+                transform-origin: left center;
+            }
+        }
+    }
+}

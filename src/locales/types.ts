@@ -1,31 +1,34 @@
 export type Language = 'ru' | 'en'
 
 export type Translation = {
-  common: {
-  theme: string
-  themeLight: string
-  themeSystem: string
-  themeDark: string
+    common: {
+    theme: string
+    themeLight: string
+    themeSystem: string
+    themeDark: string
 
-  language: string
-  booking: string
+    language: string
+    booking: string
 
-  openMenu: string
-  closeMenu: string
+    openMenu: string
+    closeMenu: string
+
+    mainNavigation: string
+    mobileNavigation: string
 }
 
-  hero: {
+    hero: {
     title: string
     subtitle: string
     aboutPeople: string
     forPeople: string
-  }
+}
 
-  navigation: {
+    navigation: {
     intro: string
     foundation: string
     fitting: string
     session: string
     reviews: string
-  }
+    }
 }
