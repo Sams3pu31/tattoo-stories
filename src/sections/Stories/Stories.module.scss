@@ -1,0 +1,304 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/functions' as fn;
+@use '../../styles/abstracts/mixins' as mixins;
+@use '../../styles/abstracts/breakpoints' as bp;
+
+// ========================================
+// STORIES
+// ========================================
+
+.stories {
+    position: relative;
+
+    width: 100%;
+
+    padding-block: vars.$space-4xl vars.$space-5xl;
+
+    overflow: hidden;
+
+    background-color: var(--color-background);
+    color: var(--color-text);
+
+    transition:
+        background-color vars.$transition-slow,
+        color vars.$transition-base;
+}
+
+// ========================================
+// HEADER
+// ========================================
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 26px;
+
+    margin-bottom: 48px;
+
+    text-align: center;
+}
+
+.title {
+    font-family: vars.$font-display;
+    font-size: fn.fluid(64, 126);
+    font-weight: vars.$font-weight-regular;
+    line-height: 0.82;
+
+    letter-spacing: -0.03em;
+
+    color: var(--color-text);
+}
+
+// ========================================
+// CONTROLS
+// ========================================
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.control {
+    @include mixins.reset-button;
+    @include mixins.focus-visible;
+
+    display: grid;
+    place-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+
+    color: var(--color-text);
+
+    transition:
+        opacity vars.$transition-fast,
+        background-color vars.$transition-fast,
+        transform vars.$transition-fast;
+
+    &:disabled {
+        cursor: default;
+        opacity: 0.22;
+    }
+
+    &:not(:disabled) {
+        @include mixins.hover {
+            background-color: var(--control-hover-background);
+            transform: scale(1.05);
+        }
+    }
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    min-width: 54px;
+
+    font-family: vars.$font-body;
+    font-size: fn.rem(10);
+    font-weight: vars.$font-weight-medium;
+
+    letter-spacing: 0.08em;
+
+    color: var(--color-text-muted);
+}
+
+// ========================================
+// TRACK
+// ========================================
+
+.track {
+    display: flex;
+
+    gap: 32px;
+
+    width: 100%;
+
+    padding-inline: vars.$page-padding-mobile;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    scroll-padding-inline: vars.$page-padding-mobile;
+
+    scrollbar-width: none;
+
+    overscroll-behavior-inline: contain;
+
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+// ========================================
+// SLIDE
+// ========================================
+
+.slide {
+    flex: 0 0 calc(100vw - 56px);
+
+    min-width: 0;
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+// ========================================
+// CARD
+// ========================================
+
+.card {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.category {
+    display: flex;
+    align-items: flex-end;
+
+    min-height: 2.4em;
+
+    margin-bottom: 16px;
+
+    font-family: vars.$font-display;
+    font-size: fn.fluid(23, 38);
+    font-weight: vars.$font-weight-regular;
+    line-height: 0.95;
+
+    text-transform: uppercase;
+
+    color: var(--color-text-muted);
+}
+
+// ========================================
+// IMAGE
+// ========================================
+
+.media {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 0.72;
+
+    overflow: hidden;
+
+    background-color: var(--color-background-light);
+}
+
+.image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform vars.$transition-slow;
+}
+
+.number {
+    position: absolute;
+
+    bottom: 8px;
+    left: 10px;
+
+    font-family: vars.$font-display;
+    font-size: fn.fluid(52, 90);
+    font-weight: vars.$font-weight-regular;
+    line-height: 0.8;
+
+    color: rgba(247, 242, 239, 0.42);
+
+    pointer-events: none;
+}
+
+// ========================================
+// CAPTION
+// ========================================
+
+.caption {
+    max-width: 22ch;
+
+    margin-top: 16px;
+
+    font-family: vars.$font-body;
+    font-size: fn.rem(11);
+    font-weight: vars.$font-weight-regular;
+    line-height: 1.35;
+
+    color: var(--color-text-muted);
+}
+
+// ========================================
+// TABLET
+// ========================================
+
+@include bp.tablet {
+    .stories {
+        padding-block: vars.$space-5xl;
+    }
+
+    .header {
+        margin-bottom: 64px;
+    }
+
+    .track {
+        gap: 28px;
+
+        padding-inline: vars.$page-padding-tablet;
+        scroll-padding-inline: vars.$page-padding-tablet;
+    }
+
+    .slide {
+        flex-basis: calc((100vw - 104px) / 2);
+    }
+}
+
+// ========================================
+// LAPTOP / DESKTOP
+// ========================================
+
+@include bp.laptop {
+    .header {
+        margin-bottom: 72px;
+    }
+
+    .track {
+        gap: 28px;
+
+        padding-inline: max(vars.$page-padding-desktop, calc((100vw - vars.$container-max-width) / 2 + vars.$page-padding-desktop));
+
+        scroll-padding-inline: max(vars.$page-padding-desktop, calc((100vw - vars.$container-max-width) / 2 + vars.$page-padding-desktop));
+    }
+
+    .slide {
+        flex-basis: calc((min(100vw, vars.$container-max-width) - 184px) / 3);
+    }
+
+    .card {
+        @include mixins.hover {
+            .image {
+                transform: scale(1.025);
+            }
+        }
+    }
+}

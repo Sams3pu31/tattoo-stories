@@ -1,0 +1,93 @@
+@use '../../styles/abstracts/variables' as vars;
+@use '../../styles/abstracts/functions' as fn;
+@use '../../styles/abstracts/breakpoints' as bp;
+
+// ========================================
+// FOUNDATION
+// ========================================
+
+.foundation {
+    position: relative;
+
+    width: 100%;
+
+    padding-block: vars.$space-4xl vars.$space-5xl;
+
+    background-color: var(--foundation-background);
+
+    color: var(--foundation-text);
+
+    transition:
+        background-color vars.$transition-slow,
+        color vars.$transition-base;
+}
+
+// ========================================
+// CONTAINER
+// ========================================
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 64px;
+
+    width: 100%;
+}
+
+// ========================================
+// HEADING
+// ========================================
+
+.heading {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+
+    text-align: center;
+}
+
+.title {
+    font-family: vars.$font-display;
+
+    font-size: fn.fluid(72, 150);
+    font-weight: vars.$font-weight-regular;
+    line-height: 0.8;
+
+    letter-spacing: -0.03em;
+
+    color: var(--foundation-text);
+}
+
+// ========================================
+// TABLET
+// ========================================
+
+@include bp.tablet {
+    .foundation {
+        padding-block: vars.$space-5xl;
+    }
+
+    .container {
+        gap: 88px;
+    }
+}
+
+// ========================================
+// DESKTOP
+// ========================================
+
+@include bp.laptop {
+    .foundation {
+        min-height: 100svh;
+
+        display: flex;
+        align-items: center;
+    }
+
+    .container {
+        gap: 104px;
+    }
+}

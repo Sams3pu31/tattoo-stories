@@ -30,6 +30,33 @@ export type Translation = {
   text: string
   note: string
 }
+    foundation: {
+  title: string
+  lead: string
+
+  paragraphs: [
+    string,
+    string,
+  ]
+}
+stories: {
+  title: string
+
+  categories: {
+    important: string
+    favorite: string
+    unnamed: string
+  }
+
+  captions: {
+    books: string
+    cartoons: string
+    era: string
+  }
+
+  previous: string
+  next: string
+}
     navigation: {
     intro: string
     foundation: string

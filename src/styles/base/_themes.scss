@@ -34,6 +34,12 @@
     --hero-text: #1c1919;
     --hero-muted-text: #7f7975;
     --hero-border: rgba(28, 25, 25, 0.28);
+
+    // Foundation
+    --foundation-background: #302c2c;
+    --foundation-text: #f7f2ef;
+    --foundation-muted: rgba(247, 242, 239, 0.52);
+    --foundation-line: rgba(247, 242, 239, 0.18);
 }
 
 // ========================================
@@ -71,4 +77,10 @@
     --hero-text: #f4f1ee;
     --hero-muted-text: #aaa4a0;
     --hero-border: rgba(255, 255, 255, 0.3);
+
+    // Foundation
+    --foundation-background: #0f0e0e;
+    --foundation-text: #f4f1ee;
+    --foundation-muted: rgba(244, 241, 238, 0.48);
+    --foundation-line: rgba(244, 241, 238, 0.16);
 }

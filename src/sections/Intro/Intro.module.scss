@@ -26,8 +26,13 @@
 // ========================================
 
 .container {
-    display: grid;
-    gap: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 48px;
+
+    text-align: center;
 }
 
 // ========================================
@@ -37,7 +42,11 @@
 .heading {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    align-items: center;
+
+    gap: 16px;
+
+    width: 100%;
 }
 
 .eyebrow {
@@ -53,7 +62,7 @@
 }
 
 .title {
-    max-width: 8ch;
+    max-width: none;
 
     font-family: vars.$font-display;
     font-size: fn.fluid(64, 132);
@@ -72,16 +81,23 @@
 .content {
     display: flex;
     flex-direction: column;
+    align-items: center;
+
     gap: 24px;
 
-    max-width: 580px;
+    width: 100%;
+    max-width: 720px;
+
+    text-align: center;
 }
 
 .lead {
+    max-width: 24ch;
+
     font-family: vars.$font-body;
     font-size: fn.fluid(22, 34);
     font-weight: vars.$font-weight-medium;
-    line-height: 1.2;
+    line-height: 1.25;
 
     letter-spacing: -0.025em;
 
@@ -89,12 +105,12 @@
 }
 
 .text {
-    max-width: 52ch;
+    max-width: 54ch;
 
     font-family: vars.$font-body;
     font-size: fn.fluid(15, 18);
     font-weight: vars.$font-weight-regular;
-    line-height: 1.65;
+    line-height: 1.7;
 
     color: var(--color-text-muted);
 }
@@ -104,8 +120,8 @@
 
     max-width: 38ch;
 
-    margin-top: 12px;
-    padding-left: 22px;
+    margin-top: 8px;
+    padding-top: 28px;
 
     font-family: vars.$font-body;
     font-size: fn.fluid(14, 17);
@@ -119,13 +135,15 @@
 
         position: absolute;
 
-        top: 0.7em;
-        left: 0;
+        top: 0;
+        left: 50%;
 
-        width: 10px;
+        width: 28px;
         height: 1px;
 
         background-color: currentColor;
+
+        transform: translateX(-50%);
     }
 }
 
@@ -135,37 +153,31 @@
 
 @include bp.tablet {
     .intro {
-        padding-block: vars.$space-5xl vars.$space-5xl;
+        padding-block: vars.$space-5xl;
     }
 
     .container {
-        gap: 72px;
+        gap: 64px;
     }
 }
 
 // ========================================
-// LAPTOP
+// DESKTOP
 // ========================================
 
 @include bp.laptop {
     .intro {
-        min-height: 80svh;
+        min-height: 85svh;
 
         display: flex;
         align-items: center;
     }
 
     .container {
-        grid-template-columns:
-            minmax(0, 1.1fr)
-            minmax(320px, 0.9fr);
-
-        align-items: end;
-
-        gap: 96px;
+        gap: 72px;
     }
 
     .content {
-        padding-bottom: 12px;
+        max-width: 760px;
     }
 }

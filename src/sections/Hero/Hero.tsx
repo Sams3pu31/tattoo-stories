@@ -2,7 +2,10 @@ import Container from '../../components/ui/Container/Container'
 
 import { useLanguage } from '../../hooks/useLanguage'
 
+import heroImage from '../../assets/images/hero/hero-reference.jpg'
+
 import styles from './Hero.module.scss'
+
 
 function Hero() {
   const { t } = useLanguage()
@@ -13,6 +16,20 @@ function Hero() {
       id="hero"
       aria-labelledby="hero-title"
     >
+      <div
+        className={styles.visual}
+        aria-hidden="true"
+      >
+        <img
+          className={styles.image}
+          src={heroImage}
+          alt=""
+          fetchPriority="high"
+        />
+
+        <div className={styles.imageOverlay} />
+      </div>
+
       <Container className={styles.container}>
         <div className={styles.content}>
           <div
@@ -26,9 +43,7 @@ function Hero() {
             className={styles.title}
             id="hero-title"
           >
-            <span>
-              {t.hero.title}
-            </span>
+            <span>{t.hero.title}</span>
 
             <span className={styles.titleSecondary}>
               {t.hero.subtitle}
@@ -36,9 +51,7 @@ function Hero() {
           </h1>
 
           <p className={styles.caption}>
-            <span>
-              {t.hero.aboutPeople}
-            </span>
+            <span>{t.hero.aboutPeople}</span>
 
             <span
               className={styles.captionDots}
@@ -47,14 +60,13 @@ function Hero() {
               •••
             </span>
 
-            <span>
-              {t.hero.forPeople}
-            </span>
+            <span>{t.hero.forPeople}</span>
           </p>
         </div>
       </Container>
     </section>
   )
 }
+
 
 export default Hero
