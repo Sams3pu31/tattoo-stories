@@ -2,8 +2,6 @@ import Container from '../../components/ui/Container/Container'
 
 import { useLanguage } from '../../hooks/useLanguage'
 
-import heroImage from '../../assets/hero.png'
-
 import styles from './Hero.module.scss'
 
 function Hero() {
@@ -15,20 +13,6 @@ function Hero() {
       id="hero"
       aria-labelledby="hero-title"
     >
-      <div
-        className={styles.background}
-        aria-hidden="true"
-      >
-        <img
-          className={styles.image}
-          src={heroImage}
-          alt=""
-          fetchPriority="high"
-        />
-
-        <div className={styles.overlay} />
-      </div>
-
       <Container className={styles.container}>
         <div className={styles.content}>
           <div

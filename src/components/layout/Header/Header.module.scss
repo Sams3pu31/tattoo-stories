@@ -15,7 +15,9 @@
 
     width: 100%;
 
-    color: vars.$color-text-light;
+    color: var(--header-text);
+
+    transition: color vars.$transition-base;
 }
 
 // ========================================

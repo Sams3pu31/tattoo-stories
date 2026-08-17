@@ -8,6 +8,8 @@
 .toggle {
     display: inline-flex;
     align-items: center;
+
+    color: var(--control-text);
 }
 
 // ========================================
@@ -28,13 +30,14 @@
 
     padding: 3px;
 
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--control-border);
     border-radius: vars.$radius-round;
 
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--control-background);
 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    transition:
+        background-color vars.$transition-base,
+        border-color vars.$transition-base;
 }
 
 // ========================================
@@ -57,22 +60,25 @@
     font-size: 15px;
     line-height: 1;
 
-    color: currentColor;
+    color: var(--control-text);
 
     opacity: 0.55;
 
     transition:
+        color vars.$transition-base,
         opacity vars.$transition-fast,
         background-color vars.$transition-fast,
         transform vars.$transition-fast;
 
     &[data-active] {
-        background-color: rgba(255, 255, 255, 0.16);
+        background-color: var(--control-active-background);
 
         opacity: 1;
     }
 
     @include mixins.hover {
+        background-color: var(--control-hover-background);
+
         opacity: 1;
         transform: scale(1.05);
     }
