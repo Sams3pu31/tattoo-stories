@@ -1,8 +1,15 @@
+import Header from '../components/layout/Header/Header'
+import Hero from '../sections/Hero/Hero'
+
 function App() {
   return (
-    <main>
-      <h1>Tattoo Stories</h1>
-    </main>
+    <>
+      <Header />
+
+      <main>
+        <Hero />
+      </main>
+    </>
   )
 }
 

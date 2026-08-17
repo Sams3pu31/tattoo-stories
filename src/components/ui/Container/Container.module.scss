@@ -1,0 +1,9 @@
+@use '../../../styles/abstracts/mixins' as mixins;
+
+// ========================================
+// CONTAINER
+// ========================================
+
+.container {
+    @include mixins.container;
+}

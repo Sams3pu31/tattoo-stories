@@ -1,0 +1,79 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins' as mixins;
+
+// ========================================
+// THEME TOGGLE
+// ========================================
+
+.toggle {
+    display: inline-flex;
+    align-items: center;
+}
+
+// ========================================
+// ACCESSIBLE LABEL
+// ========================================
+
+.label {
+    @include mixins.visually-hidden;
+}
+
+// ========================================
+// OPTIONS
+// ========================================
+
+.options {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 3px;
+
+    border: 1px solid var(--color-border);
+    border-radius: vars.$radius-round;
+
+    background-color: rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+// ========================================
+// BUTTON
+// ========================================
+
+.button {
+    @include mixins.reset-button;
+    @include mixins.focus-visible;
+
+    display: grid;
+    place-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    font-family: vars.$font-body;
+    font-size: 15px;
+    line-height: 1;
+
+    color: currentColor;
+
+    opacity: 0.55;
+
+    transition:
+        opacity vars.$transition-fast,
+        background-color vars.$transition-fast,
+        transform vars.$transition-fast;
+
+    &[data-active] {
+        background-color: rgba(255, 255, 255, 0.16);
+
+        opacity: 1;
+    }
+
+    @include mixins.hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}

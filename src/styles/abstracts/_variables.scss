@@ -15,15 +15,48 @@ $color-border: rgba(28, 25, 25, 0.15);
 $color-overlay: rgba(0, 0, 0, 0.45);
 
 // ========================================
+// THEME COLORS
+// Runtime CSS variables
+// ========================================
+
+:root {
+    --color-background: #f7f4f0;
+    --color-background-light: #fbfaf8;
+    --color-background-dark: #302c2c;
+
+    --color-text: #1c1919;
+    --color-text-light: #f7f4f1;
+    --color-text-muted: #8f8985;
+
+    --color-border: rgba(28, 25, 25, 0.15);
+
+    color-scheme: light;
+}
+
+[data-theme='dark'] {
+    --color-background: #171515;
+    --color-background-light: #211e1e;
+    --color-background-dark: #0f0e0e;
+
+    --color-text: #f4f1ee;
+    --color-text-light: #ffffff;
+    --color-text-muted: #aaa4a0;
+
+    --color-border: rgba(255, 255, 255, 0.15);
+
+    color-scheme: dark;
+}
+
+// ========================================
 // TYPOGRAPHY
 // ========================================
 
 // Пока используем fallback.
 // Позже подключим реальные файлы шрифтов через _fonts.scss.
 
-$font-display: 'Tattoo Display', 'Arial Narrow', sans-serif;
-$font-body: 'Tattoo Body', Arial, sans-serif;
-$font-accent: 'Tattoo Accent', Georgia, serif;
+$font-display: 'UrbanSlavic', 'Arial Narrow', sans-serif;
+$font-body: 'Montserrat', Arial, sans-serif;
+$font-accent: 'Montserrat', Arial, sans-serif;
 
 // ========================================
 // FONT WEIGHTS

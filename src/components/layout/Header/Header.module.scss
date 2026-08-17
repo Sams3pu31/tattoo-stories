@@ -1,0 +1,105 @@
+@use '../../../styles/abstracts/variables' as vars;
+@use '../../../styles/abstracts/mixins' as mixins;
+@use '../../../styles/abstracts/breakpoints' as bp;
+
+// ========================================
+// HEADER
+// ========================================
+
+.header {
+    position: absolute;
+    z-index: vars.$z-header;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    color: vars.$color-text-light;
+}
+
+// ========================================
+// CONTAINER
+// ========================================
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 72px;
+}
+
+// ========================================
+// TEMPORARY LOGO
+// ========================================
+
+.logo {
+    position: relative;
+    z-index: 2;
+
+    font-family: vars.$font-display;
+    font-size: 18px;
+    font-weight: vars.$font-weight-medium;
+    line-height: 1;
+
+    letter-spacing: 0.02em;
+}
+
+// ========================================
+// ACTIONS
+// ========================================
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+// ========================================
+// MOBILE MENU BUTTON
+// ========================================
+
+.menuButton {
+    @include mixins.reset-button;
+    @include mixins.focus-visible;
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+
+    width: 40px;
+    height: 40px;
+
+    span {
+        display: block;
+
+        width: 26px;
+        height: 1px;
+
+        margin-left: auto;
+
+        background-color: currentColor;
+
+        transition:
+            transform vars.$transition-base,
+            opacity vars.$transition-base;
+    }
+}
+
+// ========================================
+// DESKTOP
+// ========================================
+
+@include bp.laptop {
+    .container {
+        min-height: 88px;
+    }
+
+    .menuButton {
+        display: none;
+    }
+}

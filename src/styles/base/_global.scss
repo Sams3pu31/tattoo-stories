@@ -8,7 +8,7 @@
 html {
     min-width: 320px;
 
-    background-color: vars.$color-background;
+    background-color: var(--color-background);
 
     scroll-padding-top: 80px;
 }
@@ -21,8 +21,8 @@ body {
     min-width: 320px;
     min-height: 100vh;
 
-    background-color: vars.$color-background;
-    color: vars.$color-text;
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 // ========================================
@@ -48,8 +48,8 @@ main {
 // ========================================
 
 ::selection {
-    background-color: vars.$color-background-dark;
-    color: vars.$color-text-light;
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
 }
 
 // ========================================
