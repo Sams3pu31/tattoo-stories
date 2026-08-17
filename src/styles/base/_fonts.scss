@@ -1,0 +1,61 @@
+// ========================================
+// FONTS
+// ========================================
+//
+// Все @font-face проекта будут жить ТОЛЬКО здесь.
+//
+// Файлы шрифтов храним:
+//
+// src/assets/fonts/
+// ├── display/
+// ├── body/
+// └── accent/
+//
+// Когда определимся с конкретными шрифтами,
+// добавим сюда реальные @font-face.
+//
+// Пока проект использует fallback-шрифты,
+// заданные в:
+// styles/abstracts/_variables.scss
+// ========================================
+
+// ========================================
+// DISPLAY FONT
+// ========================================
+
+// Пример будущего подключения:
+//
+// @font-face {
+//   font-family: 'Tattoo Display';
+//   src: url('../../assets/fonts/display/font-name.woff2')
+//     format('woff2');
+//   font-style: normal;
+//   font-weight: 400;
+//   font-display: swap;
+// }
+
+// ========================================
+// BODY FONT
+// ========================================
+
+// @font-face {
+//   font-family: 'Tattoo Body';
+//   src: url('../../assets/fonts/body/font-name.woff2')
+//     format('woff2');
+//   font-style: normal;
+//   font-weight: 400;
+//   font-display: swap;
+// }
+
+// ========================================
+// ACCENT FONT
+// ========================================
+
+// @font-face {
+//   font-family: 'Tattoo Accent';
+//   src: url('../../assets/fonts/accent/font-name.woff2')
+//     format('woff2');
+//   font-style: normal;
+//   font-weight: 400;
+//   font-display: swap;
+// }

@@ -1,0 +1,121 @@
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mixins;
+
+// ========================================
+// DOCUMENT
+// ========================================
+
+html {
+    min-width: 320px;
+
+    background-color: vars.$color-background;
+
+    scroll-padding-top: 80px;
+}
+
+// ========================================
+// BODY
+// ========================================
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+
+    background-color: vars.$color-background;
+    color: vars.$color-text;
+}
+
+// ========================================
+// REACT ROOT
+// ========================================
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+}
+
+// ========================================
+// MAIN
+// ========================================
+
+main {
+    display: block;
+    width: 100%;
+}
+
+// ========================================
+// SELECTION
+// ========================================
+
+::selection {
+    background-color: vars.$color-background-dark;
+    color: vars.$color-text-light;
+}
+
+// ========================================
+// INTERACTIVE ELEMENTS
+// ========================================
+
+a,
+button,
+input,
+textarea,
+select {
+    @include mixins.focus-visible;
+}
+
+// ========================================
+// FORM ELEMENTS
+// ========================================
+
+input,
+textarea,
+select {
+    width: 100%;
+
+    background-color: transparent;
+}
+
+textarea {
+    min-height: 120px;
+}
+
+// ========================================
+// DISABLED STATE
+// ========================================
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+// ========================================
+// IMAGE SELECTION / DRAGGING
+// ========================================
+
+img {
+    user-select: none;
+}
+
+// ========================================
+// REDUCED MOTION
+// ========================================
+
+@include mixins.reduced-motion {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

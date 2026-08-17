@@ -1,0 +1,15 @@
+// ========================================
+// GLOBAL STYLES ENTRY POINT
+// ========================================
+
+// Fonts
+@use './base/fonts';
+
+// Reset
+@use './base/reset';
+
+// Typography
+@use './base/typography';
+
+// Global styles
+@use './base/global';
