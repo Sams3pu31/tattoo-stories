@@ -1,32 +1,44 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Container from '../../components/ui/Container/Container'
-import TypedText from '../../components/ui/TypedText/TypedText'
 import { useInView } from '../../hooks/useInView'
 import { useLanguage } from '../../hooks/useLanguage'
 import styles from './Session.module.scss'
 
-type SessionStage =
-  | 'waiting'
-  | 'lead'
-  | 'comfort'
-  | 'final'
-  | 'complete'
-
 function Session() {
   const { t } = useLanguage()
   const { ref, isInView } = useInView<HTMLElement>(0.12)
-  const [stage, setStage] = useState<SessionStage>('waiting')
+  const [revealed, setRevealed] = useState(false)
+  const [enabled, setEnabled] = useState(false)
+
+  const text = useMemo(() => {
+    const [comfort = '', details = '', extra = ''] = t.session.text.split('\n\n')
+    const comfortLines = comfort.split('\n')
+    const accent = comfortLines.pop() ?? ''
+
+    return {
+      comfort: comfortLines.join('\n'),
+      accent,
+      details,
+      extra,
+    }
+  }, [t.session.text])
 
   useEffect(() => {
-    if (isInView) {
-      setStage((current) =>
-        current === 'waiting' ? 'lead' : current,
-      )
+    if (!isInView || revealed) return
+
+    setRevealed(true)
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+    if (reducedMotion.matches) {
+      setEnabled(true)
       return
     }
 
-    setStage('waiting')
-  }, [isInView])
+    const timer = window.setTimeout(() => setEnabled(true), 950)
+
+    return () => window.clearTimeout(timer)
+  }, [isInView, revealed])
 
   return (
     <section
@@ -34,87 +46,51 @@ function Session() {
       className={styles.session}
       id="session"
       aria-labelledby="session-title"
-      data-stage={stage}
+      data-visible={revealed || undefined}
+      data-enabled={enabled || undefined}
     >
       <Container className={styles.container}>
-        <header className={styles.heading}>
-          <span className={styles.eyebrow}>
-            {t.session.eyebrow}
-          </span>
+        <h2 className={styles.sectionTitle} id="session-title">
+          {t.session.eyebrow}
+        </h2>
 
-          <h2
-            className={styles.title}
-            id="session-title"
+        <div className={styles.system}>
+          <p className={styles.qualities}>{t.session.title}</p>
+
+          <div
+            className={styles.switchArea}
+            data-ink-anchor="session-switch"
           >
-            {t.session.title}
-          </h2>
-        </header>
-
-        <div className={styles.content}>
-          <p className={styles.lead}>
-            <TypedText
-              text={t.session.lead}
-              state={
-                stage === 'waiting'
-                  ? 'waiting'
-                  : stage === 'lead'
-                    ? 'active'
-                    : 'complete'
-              }
-              speed={38}
-              startDelay={180}
-              endDelay={300}
-              onComplete={() => setStage('comfort')}
-            />
-          </p>
-
-          <div className={styles.comfort}>
             <div
-              className={styles.breath}
-              aria-hidden="true"
+              className={styles.switch}
+              role="img"
+              aria-label={enabled ? 'ON' : 'OFF'}
             >
-              <span className={styles.ringOuter} />
-              <span className={styles.ringMiddle} />
-              <span className={styles.ringInner} />
-              <span className={styles.core} />
+              <span className={styles.switchLabelOff}>OFF</span>
+              <span className={styles.switchLabelOn}>ON</span>
+              <span className={styles.switchKnob} />
             </div>
-
-            <p className={styles.text}>
-              <TypedText
-                text={t.session.text}
-                state={
-                  stage === 'comfort'
-                    ? 'active'
-                    : stage === 'final' ||
-                        stage === 'complete'
-                      ? 'complete'
-                      : 'waiting'
-                }
-                speed={32}
-                startDelay={160}
-                endDelay={350}
-                onComplete={() => setStage('final')}
-              />
-            </p>
           </div>
 
-          <p className={styles.final}>
-            <TypedText
-              text={t.session.final}
-              state={
-                stage === 'final'
-                  ? 'active'
-                  : stage === 'complete'
-                    ? 'complete'
-                    : 'waiting'
-              }
-              speed={42}
-              startDelay={250}
-              endDelay={250}
-              onComplete={() => setStage('complete')}
-            />
-          </p>
+          <p className={styles.defaults}>{t.session.lead}</p>
         </div>
+
+        <div className={styles.comfort}>
+          <p className={styles.comfortText}>{text.comfort}</p>
+          <p className={styles.comfortAccent}>{text.accent}</p>
+        </div>
+
+        <div className={styles.details}>
+          <p>{text.details}</p>
+          <p>{text.extra}</p>
+        </div>
+
+        <p
+          className={styles.final}
+          data-ink-anchor="session-final"
+        >
+          {t.session.final}
+        </p>
       </Container>
     </section>
   )

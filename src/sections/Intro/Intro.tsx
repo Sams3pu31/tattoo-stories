@@ -1,14 +1,17 @@
+import { useEffect, useState } from 'react'
 import Container from '../../components/ui/Container/Container'
-import TypedText from '../../components/ui/TypedText/TypedText'
 import { useInView } from '../../hooks/useInView'
 import { useLanguage } from '../../hooks/useLanguage'
-import { useTypingSequence } from '../../hooks/useTypingSequence'
 import styles from './Intro.module.scss'
 
 function Intro() {
   const { t } = useLanguage()
-  const { ref, isInView } = useInView<HTMLElement>(0.15)
-  const { completeStep, getState } = useTypingSequence(isInView, 3)
+  const { ref, isInView } = useInView<HTMLElement>(0.12)
+  const [revealed, setRevealed] = useState(false)
+
+  useEffect(() => {
+    if (isInView) setRevealed(true)
+  }, [isInView])
 
   return (
     <section
@@ -16,51 +19,26 @@ function Intro() {
       className={styles.intro}
       id="intro"
       aria-labelledby="intro-title"
+      data-visible={revealed || undefined}
     >
       <Container className={styles.container}>
-        <header className={styles.heading}>
-          <span className={styles.eyebrow}>
-            {t.intro.eyebrow}
-          </span>
+        <h2 className={styles.title} id="intro-title">
+          {t.intro.eyebrow}
+        </h2>
 
-          <h2 className={styles.title} id="intro-title">
-            {t.intro.title}
-          </h2>
-        </header>
+        <div className={styles.body}>
+          <p className={styles.name}>{t.intro.title}</p>
+          <p className={styles.lead}>{t.intro.lead}</p>
+        </div>
 
-        <div className={styles.content}>
-          <p className={styles.lead}>
-            <TypedText
-              text={t.intro.lead}
-              state={getState(0)}
-              speed={40}
-              startDelay={220}
-              endDelay={420}
-              onComplete={() => completeStep(0)}
-            />
-          </p>
-
-          <p className={styles.text}>
-            <TypedText
-              text={t.intro.text}
-              state={getState(1)}
-              speed={38}
-              startDelay={200}
-              endDelay={450}
-              onComplete={() => completeStep(1)}
-            />
-          </p>
-
-          <p className={styles.note}>
-            <TypedText
-              text={t.intro.note}
-              state={getState(2)}
-              speed={40}
-              startDelay={200}
-              endDelay={350}
-              onComplete={() => completeStep(2)}
-            />
-          </p>
+        <div className={styles.topics}>
+          {t.intro.text
+            .split('\n')
+            .filter(Boolean)
+            .map((topic) => (
+              <p key={topic}>{topic}</p>
+            ))}
+          <p className={styles.topicWrapped}>{t.intro.note}</p>
         </div>
       </Container>
     </section>

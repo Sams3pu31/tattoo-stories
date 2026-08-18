@@ -10,6 +10,7 @@ import Intro from '../sections/Intro/Intro'
 import Reviews from '../sections/Reviews/Reviews'
 import Session from '../sections/Session/Session'
 import Stories from '../sections/Stories/Stories'
+import Works from '../sections/Works/Works'
 
 function App() {
   return (
@@ -20,10 +21,11 @@ function App() {
       <main>
         <Hero />
         <Intro />
-        <Stories />
         <Foundation />
+        <Stories />
         <Fitting />
         <Session />
+        <Works />
         <Reviews />
         <FinalCTA />
         <Booking />

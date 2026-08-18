@@ -6,40 +6,35 @@
 .stories {
     position: relative;
     width: 100%;
-    padding-block: vars.$space-4xl vars.$space-5xl;
+    padding-block: 96px 112px;
     overflow: hidden;
-    background-color: var(--color-background);
+    background: var(--color-background);
     color: var(--color-text);
-    transition:
-        background-color vars.$transition-slow,
-        color vars.$transition-base;
 }
 
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 26px;
-    margin-bottom: 48px;
-    padding-inline: vars.$page-padding-mobile;
+    gap: 28px;
+    margin-bottom: 52px;
     text-align: center;
 }
 
 .title {
     margin: 0;
-    font-family: vars.$font-body;
-    font-size: fn.fluid(52, 104);
-    font-weight: 700;
-    line-height: 0.92;
-    letter-spacing: -0.05em;
-    color: var(--color-text);
+    font-family: vars.$font-display;
+    font-size: fn.fluid(44, 72);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.025em;
 }
 
 .controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .control {
@@ -53,21 +48,16 @@
     border: 1px solid var(--color-border);
     border-radius: 50%;
     color: var(--color-text);
+    font-family: vars.$font-body;
+    font-size: 14px;
+    cursor: pointer;
     transition:
-        opacity vars.$transition-fast,
-        background-color vars.$transition-fast,
-        transform vars.$transition-fast;
+        transform vars.$transition-fast,
+        background-color vars.$transition-fast;
 
-    &:disabled {
-        cursor: default;
-        opacity: 0.22;
-    }
-
-    &:not(:disabled) {
-        @include mixins.hover {
-            background-color: var(--control-hover-background);
-            transform: scale(1.05);
-        }
+    @include mixins.hover {
+        background: var(--control-hover-background);
+        transform: scale(1.06);
     }
 }
 
@@ -85,18 +75,22 @@
 
 .track {
     display: flex;
-    gap: 0;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    padding: 0;
+    gap: 12px;
+    width: 100%;
+    padding: 0 16vw 0 0;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    scroll-padding-inline: 0;
     scrollbar-width: none;
     overscroll-behavior-inline: contain;
     -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    transition: opacity 220ms ease;
+
+    &[data-ready] {
+        opacity: 1;
+    }
 
     &::-webkit-scrollbar {
         display: none;
@@ -104,8 +98,8 @@
 }
 
 .slide {
-    flex: 0 0 100vw;
-    width: 100vw;
+    flex: 0 0 84vw;
+    width: 84vw;
     min-width: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -121,13 +115,13 @@
 .category {
     display: flex;
     align-items: flex-end;
-    min-height: 2.3em;
+    min-height: 2.2em;
     margin: 0 0 18px;
-    padding-inline: vars.$page-padding-mobile;
+    padding-inline: 20px;
     font-family: vars.$font-display;
-    font-size: fn.fluid(28, 46);
-    font-weight: vars.$font-weight-regular;
-    line-height: 0.88;
+    font-size: fn.fluid(28, 42);
+    font-weight: 400;
+    line-height: 0.92;
     letter-spacing: -0.025em;
     text-transform: uppercase;
     color: var(--color-text);
@@ -138,7 +132,7 @@
     width: 100%;
     aspect-ratio: 0.82;
     overflow: hidden;
-    background-color: var(--color-background-light);
+    background: var(--color-background-light);
 }
 
 .image {
@@ -147,89 +141,93 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform vars.$transition-slow;
+    transform: translateZ(0);
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .number {
     position: absolute;
-    bottom: 10px;
-    left: vars.$page-padding-mobile;
+    bottom: 12px;
+    left: 20px;
     font-family: vars.$font-display;
-    font-size: fn.fluid(52, 90);
-    font-weight: vars.$font-weight-regular;
+    font-size: fn.fluid(50, 82);
+    font-weight: 400;
     line-height: 0.8;
-    color: rgba(247, 242, 239, 0.42);
+    color: rgb(255 255 255 / 42%);
     pointer-events: none;
 }
 
 .caption {
-    max-width: 28ch;
+    max-width: 32ch;
     margin: 16px 0 0;
-    padding-inline: vars.$page-padding-mobile;
+    padding-inline: 20px;
     font-family: vars.$font-body;
     font-size: fn.rem(11);
     font-weight: 300;
-    line-height: 1.45;
+    line-height: 1.5;
     color: var(--color-text-muted);
 }
 
 @include bp.tablet {
     .stories {
-        padding-block: vars.$space-5xl;
+        padding-block: 120px 144px;
     }
 
     .header {
+        gap: 32px;
         margin-bottom: 64px;
-        padding-inline: vars.$page-padding-tablet;
     }
 
     .track {
-        gap: 0;
+        gap: 18px;
+        padding-right: 11vw;
     }
 
     .slide {
-        flex-basis: 50vw;
-        width: 50vw;
+        flex-basis: 66vw;
+        width: 66vw;
     }
 
-    .category {
-        padding-inline: vars.$page-padding-tablet;
-    }
-
+    .category,
     .caption {
-        padding-inline: vars.$page-padding-tablet;
+        padding-inline: 32px;
     }
 
     .number {
-        left: vars.$page-padding-tablet;
+        left: 32px;
     }
 
     .media {
-        aspect-ratio: 0.78;
+        aspect-ratio: 0.88;
     }
 }
 
 @include bp.laptop {
+    .stories {
+        padding-block: 144px 168px;
+    }
+
     .header {
         margin-bottom: 72px;
-        padding-inline: vars.$page-padding-desktop;
+    }
+
+    .track {
+        gap: 22px;
+        padding-right: 6vw;
     }
 
     .slide {
-        flex-basis: calc(100vw / 3);
-        width: calc(100vw / 3);
+        flex-basis: 44vw;
+        width: 44vw;
     }
 
-    .category {
-        padding-inline: 28px;
-    }
-
+    .category,
     .caption {
-        padding-inline: 28px;
+        padding-inline: 40px;
     }
 
     .number {
-        left: 28px;
+        left: 40px;
     }
 
     .card {
@@ -238,5 +236,23 @@
                 transform: scale(1.025);
             }
         }
+    }
+}
+
+@include bp.desktop {
+    .slide {
+        flex-basis: 36vw;
+        width: 36vw;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .track {
+        scroll-behavior: auto;
+        transition: none;
+    }
+
+    .image {
+        transition: none;
     }
 }

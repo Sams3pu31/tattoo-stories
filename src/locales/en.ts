@@ -21,12 +21,12 @@ export const en: Translation = {
   },
 
   intro: {
-    eyebrow: 'About',
-    title: 'I’m Anna.',
-    lead: 'I create tattoos that tell people’s stories.',
-    text: 'Sometimes about what matters. Sometimes about what we love.',
-    note: 'Sometimes about things with no name.',
-  },
+  eyebrow: 'Hello',
+  title: 'I’m Anna.',
+  lead: 'I create tattoos\nthat tell people’s\nstories.',
+  text: 'About what matters.\nAbout what we love.',
+  note: 'About things\nwith no name.',
+},
 
   stories: {
     title: 'Stories',
@@ -46,14 +46,13 @@ export const en: Translation = {
   },
 
   foundation: {
-    title: 'Foundation',
-    lead: 'Every tattoo starts with a conversation.',
-    paragraphs: [
-      'You can come with a clear idea or with absolutely nothing in mind.',
-      'Show me five random images or give me one strange thought.',
-      'I’ll ask questions, pull it all together, and translate it from human into tattoo language.',
-    ],
-  },
+  title: 'FOUNDATION',
+  lead: 'Every tattoo\nstarts with\na conversation.',
+  paragraphs: [
+    'Come with\na clear idea\nor with absolutely\nnothing in mind.\nShow me five\nrandom images\nor give me one\nstrange thought.',
+    'I’ll ask questions,\npull it all together\nand translate it\nfrom abstract\ninto something clear.',
+  ],
+},
 
   fitting: {
     eyebrow: 'Fitting',
@@ -66,23 +65,20 @@ export const en: Translation = {
   },
 
   session: {
-    eyebrow: 'Session',
-    title: 'What matters to me is that you feel at ease.',
-    lead: 'Cleanliness, sterility, and quality come as standard.',
-    text:
-      'Wear something comfortable. Bring your favorite true-crime podcast, a book, your knitting, a snack — anything that helps you settle in.',
-    final: 'I’ll take care of the rest.',
-  },
+  eyebrow: 'SESSION',
+  title: 'cleanliness\nsterility\nquality',
+  lead: 'settings\nby default',
+  text: 'What matters to me\nis that you feel\nat ease…\n\nComfortable clothes,\nyour favorite true-crime\npodcast, a book,\nyour knitting, a snack.\n\nBring whatever helps\nyou feel comfortable\nduring the session.',
+  final: 'I’ll take care\nof the rest.',
+},
 
   reviews: {
-    eyebrow: 'Reviews',
-    title: 'No marketing fluff.',
-    lead:
-      'This is where I’m supposed to say “a personalized approach.” But that’s marketing fluff.',
-    text:
-      'These are the words of people who came to me, then came back — or never really left.',
-    final: 'I’d call that pretty convincing.',
-  },
+  eyebrow: 'REVIEWS',
+  title: 'REVIEWS',
+  lead: 'This is where I’m supposed\nto say “a personalized approach.”\nBut that’s marketing fluff.',
+  text: 'Below are the words of people\nwho came to me,\nthen came back —\nor never really left.',
+  final: 'I’d call that\npretty convincing.',
+},
 
   finalCta: {
     title: 'So, what’s in your head?',

@@ -1,26 +1,16 @@
 import { useEffect, useState } from 'react'
 import Container from '../../components/ui/Container/Container'
-import TypedText from '../../components/ui/TypedText/TypedText'
 import { useInView } from '../../hooks/useInView'
 import { useLanguage } from '../../hooks/useLanguage'
 import styles from './FinalCTA.module.scss'
 
-type FinalStage = 'waiting' | 'title' | 'action'
-
 function FinalCTA() {
   const { t } = useLanguage()
-  const { ref, isInView } = useInView<HTMLElement>(0.2)
-  const [stage, setStage] = useState<FinalStage>('waiting')
+  const { ref, isInView } = useInView<HTMLElement>(0.14)
+  const [revealed, setRevealed] = useState(false)
 
   useEffect(() => {
-    if (isInView) {
-      setStage((current) =>
-        current === 'waiting' ? 'title' : current,
-      )
-      return
-    }
-
-    setStage('waiting')
+    if (isInView) setRevealed(true)
   }, [isInView])
 
   return (
@@ -28,39 +18,26 @@ function FinalCTA() {
       ref={ref}
       className={styles.finalCta}
       id="final"
-      data-stage={stage}
+      data-visible={revealed || undefined}
     >
       <Container className={styles.container}>
-        <h2 className={styles.title}>
-          <TypedText
-            text={t.finalCta.title}
-            state={
-              stage === 'waiting'
-                ? 'waiting'
-                : stage === 'title'
-                  ? 'active'
-                  : 'complete'
-            }
-            speed={58}
-            startDelay={250}
-            endDelay={350}
-            onComplete={() => setStage('action')}
-          />
-        </h2>
+        <h2 className={styles.title}>{t.finalCta.title}</h2>
 
-        <a
-          className={styles.action}
-          href="#booking"
-        >
+        <a className={styles.action} href="#booking">
           <span>{t.finalCta.action}</span>
-          <span
-            className={styles.arrow}
-            aria-hidden="true"
-          >
+          <span className={styles.arrow} aria-hidden="true">
             →
           </span>
         </a>
       </Container>
+
+      <div
+        className={styles.inkSurface}
+        data-ink-anchor="final-surface"
+        aria-hidden="true"
+      >
+        <span className={styles.surfaceLine} />
+      </div>
     </section>
   )
 }
