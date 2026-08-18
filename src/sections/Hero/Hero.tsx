@@ -1,57 +1,65 @@
-import heroImage from '../../assets/images/hero/hero-reference.jpg'
+import heroHorizontal from '../../assets/images/hero/hero-horizontal.jpg'
+import heroVertical from '../../assets/images/hero/hero-vertical.jpg'
 import Container from '../../components/ui/Container/Container'
 import LogoMark from '../../components/ui/LogoMark/LogoMark'
 import { useLanguage } from '../../hooks/useLanguage'
 import styles from './Hero.module.scss'
 
 function Hero() {
-  const { t } = useLanguage()
+    const { t } = useLanguage()
 
-  return (
-    <section
-      className={styles.hero}
-      id="top"
-      aria-labelledby="hero-title"
-    >
-      <div className={styles.frame}>
-        <img
-          className={styles.image}
-          src={heroImage}
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-        />
+    return (
+        <section
+            className={styles.hero}
+            id="top"
+            aria-labelledby="hero-title"
+        >
+            <div className={styles.frame}>
+                <picture className={styles.picture}>
+                    <source
+                        media="(max-width: 767px)"
+                        srcSet={heroVertical}
+                    />
 
-        <div
-          className={styles.overlay}
-          aria-hidden="true"
-        />
+                    <img
+                        className={styles.image}
+                        src={heroHorizontal}
+                        alt=""
+                        aria-hidden="true"
+                        fetchPriority="high"
+                    />
+                </picture>
 
-        <Container className={styles.container}>
-          <div className={styles.content}>
-            <LogoMark
-              className={styles.heroLogo}
-              tone="white"
-            />
+                <div
+                    className={styles.overlay}
+                    aria-hidden="true"
+                />
 
-            <h1
-              className={styles.title}
-              id="hero-title"
-            >
-              <span>{t.hero.title}</span>
-              <span>{t.hero.subtitle}</span>
-            </h1>
+                <Container className={styles.container}>
+                    <div className={styles.content}>
+                        <LogoMark
+                            className={styles.heroLogo}
+                            tone="white"
+                        />
 
-            <div className={styles.subtitle}>
-              <span>{t.hero.aboutPeople}</span>
-              <span aria-hidden="true">···</span>
-              <span>{t.hero.forPeople}</span>
+                        <h1
+                            className={styles.title}
+                            id="hero-title"
+                        >
+                            <span>{t.hero.title}</span>
+                            <span>{t.hero.subtitle}</span>
+                        </h1>
+
+                        <div className={styles.subtitle}>
+                            <span>{t.hero.aboutPeople}</span>
+                            <span aria-hidden="true">···</span>
+                            <span>{t.hero.forPeople}</span>
+                        </div>
+                    </div>
+                </Container>
             </div>
-          </div>
-        </Container>
-      </div>
-    </section>
-  )
+        </section>
+    )
 }
 
 export default Hero

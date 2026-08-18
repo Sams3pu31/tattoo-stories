@@ -41,6 +41,7 @@
 
 .title {
     max-width: none;
+    margin: 0;
     font-family: vars.$font-display;
     font-size: fn.fluid(64, 132);
     font-weight: vars.$font-weight-regular;
@@ -60,34 +61,38 @@
 }
 
 .lead {
-    max-width: 24ch;
+    max-width: 30ch;
+    margin: 0;
     font-family: vars.$font-body;
-    font-size: fn.fluid(22, 34);
-    font-weight: vars.$font-weight-medium;
-    line-height: 1.25;
-    letter-spacing: -0.025em;
+    font-size: fn.fluid(20, 30);
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
     color: var(--color-text);
 }
 
 .text {
-    max-width: 54ch;
+    max-width: 48ch;
+    margin: 0;
     font-family: vars.$font-body;
     font-size: fn.fluid(15, 18);
-    font-weight: vars.$font-weight-regular;
-    line-height: 1.7;
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
     color: var(--color-text-muted);
 }
 
 .note {
     position: relative;
-    max-width: 38ch;
-    margin-top: 8px;
+    max-width: 42ch;
+    margin: 4px 0 0;
     padding-top: 28px;
     font-family: vars.$font-body;
-    font-size: fn.fluid(14, 17);
-    font-weight: vars.$font-weight-medium;
-    line-height: 1.5;
-    color: var(--color-text);
+    font-size: fn.fluid(15, 18);
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    color: var(--color-text-muted);
 
     &::before {
         content: '';
@@ -97,6 +102,7 @@
         width: 28px;
         height: 1px;
         background-color: currentColor;
+        opacity: 0.45;
         transform: translateX(-50%);
     }
 }
@@ -108,6 +114,10 @@
 
     .container {
         gap: 64px;
+    }
+
+    .content {
+        gap: 28px;
     }
 }
 
