@@ -35,10 +35,14 @@
 }
 
 .language {
-    position: relative;
+    position: fixed;
+    top: 36px;
+    left: max(8px, env(safe-area-inset-left));
     z-index: 302;
     display: flex;
     align-items: center;
+    transform: translateY(-50%) scale(0.78);
+    transform-origin: left center;
 
     button {
         color: inherit;
@@ -129,11 +133,23 @@
     .container {
         min-height: 78px;
     }
+
+    .language {
+        top: 39px;
+        left: max(12px, env(safe-area-inset-left));
+        transform: translateY(-50%) scale(0.82);
+    }
 }
 
 @include bp.laptop {
     .container {
         min-height: 84px;
+    }
+
+    .language {
+        top: 42px;
+        left: max(16px, env(safe-area-inset-left));
+        transform: translateY(-50%) scale(0.84);
     }
 
     .navigation {
