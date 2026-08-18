@@ -32,27 +32,32 @@
 .eyebrow {
     font-family: vars.$font-body;
     font-size: fn.rem(10);
-    font-weight: vars.$font-weight-semibold;
+    font-weight: 500;
+    line-height: 1;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-text-muted);
 }
 
 .title {
-    max-width: 12ch;
-    font-family: vars.$font-display;
-    font-size: fn.fluid(64, 138);
-    font-weight: vars.$font-weight-regular;
-    line-height: 0.82;
-    letter-spacing: -0.035em;
+    max-width: 14ch;
+    margin: 0;
+    font-family: vars.$font-body;
+    font-size: fn.fluid(46, 92);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    color: var(--color-text);
 }
 
 .lead {
     max-width: 48ch;
+    margin: 0;
     font-family: vars.$font-body;
     font-size: fn.fluid(18, 27);
-    font-weight: vars.$font-weight-medium;
+    font-weight: 300;
     line-height: 1.5;
+    letter-spacing: -0.015em;
 }
 
 .track {
@@ -155,17 +160,22 @@
 
 .text {
     max-width: 52ch;
+    margin: 0;
     font-family: vars.$font-body;
     font-size: fn.fluid(16, 21);
+    font-weight: 300;
     line-height: 1.7;
+    letter-spacing: -0.01em;
 }
 
 .final {
     max-width: 34ch;
+    margin: 0;
     font-family: vars.$font-body;
     font-size: fn.fluid(20, 30);
-    font-weight: vars.$font-weight-medium;
+    font-weight: 300;
     line-height: 1.4;
+    letter-spacing: -0.015em;
 }
 
 @keyframes revealReview {

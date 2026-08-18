@@ -7,7 +7,9 @@
     right: 0;
     left: 0;
     z-index: 300;
-    color: var(--color-text);
+    width: 100%;
+    color: #fff;
+    mix-blend-mode: difference;
     pointer-events: none;
 }
 
@@ -15,24 +17,39 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
     min-height: 72px;
+    color: inherit;
     pointer-events: none;
+
+    a,
+    button {
+        color: inherit;
+    }
 }
 
+.left,
 .logo,
-.actions,
+.language,
+.navigation,
 .menuButton {
     pointer-events: auto;
 }
 
-.logo {
+.left {
     position: relative;
     z-index: 302;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
     display: block;
     flex: 0 0 auto;
     width: 18px;
-    opacity: 0.76;
-    filter: drop-shadow(0 1px 4px var(--color-background));
+    line-height: 0;
+    opacity: 0.92;
     transition:
         opacity vars.$transition-base,
         transform vars.$transition-base;
@@ -41,6 +58,7 @@
         display: block;
         width: 100%;
         height: auto;
+        filter: none;
     }
 
     &:hover,
@@ -50,22 +68,31 @@
     }
 }
 
-.actions {
-    position: relative;
-    z-index: 302;
+.language {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-left: auto;
-    filter: drop-shadow(0 1px 4px var(--color-background));
+
+    button {
+        color: inherit;
+        border-color: currentColor;
+    }
+}
+
+.navigation {
+    display: none;
+
+    a {
+        color: inherit;
+    }
 }
 
 .menuButton {
     position: relative;
     z-index: 304;
     display: block;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
     padding: 0;
     border: 0;
     background: transparent;
@@ -75,29 +102,40 @@
     span {
         position: absolute;
         left: 8px;
-        width: 22px;
+        width: 24px;
         height: 1px;
         background: currentColor;
+        transform-origin: center;
         transition:
             top vars.$transition-base,
+            opacity vars.$transition-base,
             transform vars.$transition-base;
     }
 
-    span:first-child {
-        top: 15px;
+    span:nth-child(1) {
+        top: 13px;
     }
 
-    span:last-child {
-        top: 22px;
+    span:nth-child(2) {
+        top: 20px;
     }
 
-    &[data-open] span:first-child {
-        top: 19px;
+    span:nth-child(3) {
+        top: 27px;
+    }
+
+    &[data-open] span:nth-child(1) {
+        top: 20px;
         transform: rotate(45deg);
     }
 
-    &[data-open] span:last-child {
-        top: 19px;
+    &[data-open] span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    &[data-open] span:nth-child(3) {
+        top: 20px;
         transform: rotate(-45deg);
     }
 
@@ -109,11 +147,17 @@
 
 .header[data-menu-open] {
     z-index: 500;
+    color: var(--color-text);
+    mix-blend-mode: normal;
 
-    .logo,
-    .actions,
+    .left,
+    .navigation,
     .menuButton {
         z-index: 502;
+    }
+
+    .logo img {
+        filter: invert(1);
     }
 }
 
@@ -122,12 +166,12 @@
         min-height: 78px;
     }
 
-    .logo {
-        width: 20px;
+    .left {
+        gap: 16px;
     }
 
-    .actions {
-        gap: 8px;
+    .logo {
+        width: 20px;
     }
 }
 
@@ -136,8 +180,20 @@
         min-height: 84px;
     }
 
+    .left {
+        gap: 18px;
+    }
+
     .logo {
         width: 22px;
+    }
+
+    .navigation {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        transform: translate(-50%, -50%);
     }
 
     .menuButton {

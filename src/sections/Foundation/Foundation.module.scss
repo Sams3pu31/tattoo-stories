@@ -18,12 +18,13 @@
 }
 
 .title {
+    margin: 0;
     text-align: center;
-    font-family: vars.$font-display;
-    font-size: fn.fluid(68, 144);
-    font-weight: vars.$font-weight-regular;
-    line-height: 0.82;
-    letter-spacing: -0.035em;
+    font-family: vars.$font-body;
+    font-size: fn.fluid(52, 104);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
 }
 
 @include bp.tablet {

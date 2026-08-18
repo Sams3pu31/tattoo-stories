@@ -1,5 +1,5 @@
-import heroHorizontal from '../../assets/images/hero/hero-horizontal.jpg'
-import heroVertical from '../../assets/images/hero/hero-vertical.jpg'
+import heroHorizontal from '../../assets/images/hero/optimized/hero-horizontal-optimized.jpg'
+import heroVertical from '../../assets/images/hero/optimized/hero-vertical-optimized.jpg'
 import Container from '../../components/ui/Container/Container'
 import LogoMark from '../../components/ui/LogoMark/LogoMark'
 import { useLanguage } from '../../hooks/useLanguage'

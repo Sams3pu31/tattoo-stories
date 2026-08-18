@@ -26,11 +26,11 @@
 
 .title {
     margin: 0;
-    font-family: vars.$font-display;
-    font-size: fn.fluid(64, 126);
-    font-weight: vars.$font-weight-regular;
-    line-height: 0.82;
-    letter-spacing: -0.03em;
+    font-family: vars.$font-body;
+    font-size: fn.fluid(52, 104);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
     color: var(--color-text);
 }
 
@@ -77,8 +77,7 @@
     min-width: 54px;
     font-family: vars.$font-body;
     font-size: fn.rem(10);
-    font-weight: 300;
-    line-height: 1;
+    font-weight: 400;
     letter-spacing: 0.08em;
     color: var(--color-text-muted);
 }
@@ -166,7 +165,6 @@
     font-size: fn.rem(11);
     font-weight: 300;
     line-height: 1.45;
-    letter-spacing: 0.005em;
     color: var(--color-text-muted);
 }
 
@@ -187,10 +185,6 @@
 
     .slide {
         flex-basis: calc((100vw - 104px) / 2);
-    }
-
-    .category {
-        margin-bottom: 20px;
     }
 }
 
