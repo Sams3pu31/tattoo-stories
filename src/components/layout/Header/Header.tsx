@@ -3,7 +3,6 @@ import { useLanguage } from '../../../hooks/useLanguage'
 import { useLockBodyScroll } from '../../../hooks/useLockBodyScroll'
 import Container from '../../ui/Container/Container'
 import LanguageSwitch from '../../ui/LanguageSwitch/LanguageSwitch'
-import LogoMark from '../../ui/LogoMark/LogoMark'
 import MobileMenu from '../MobileMenu/MobileMenu'
 import Navigation from '../Navigation/Navigation'
 import styles from './Header.module.scss'
@@ -41,18 +40,8 @@ function Header() {
         data-menu-open={isMenuOpen || undefined}
       >
         <Container className={styles.container}>
-          <div className={styles.left}>
-            <a
-              className={styles.logo}
-              href="#top"
-              aria-label="Tattoo Stories"
-            >
-              <LogoMark tone="white" />
-            </a>
-
-            <div className={styles.language}>
-              <LanguageSwitch />
-            </div>
+          <div className={styles.language}>
+            <LanguageSwitch />
           </div>
 
           <div className={styles.navigation}>
