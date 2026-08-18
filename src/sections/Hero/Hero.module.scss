@@ -61,7 +61,7 @@
 
 .heroLogo {
     position: absolute;
-    top: 17%;
+    top: 16%;
     left: 50%;
     display: block;
     width: clamp(72px, 22vw, 92px);
@@ -75,7 +75,7 @@
 
 .title {
     position: absolute;
-    top: 60%;
+    top: 63%;
     left: 50%;
     display: flex;
     flex-direction: column;
@@ -96,18 +96,18 @@
     }
 
     span:last-child {
-        margin-top: 6px;
+        margin-top: 3px;
         font-family: vars.$font-body;
         font-size: clamp(25px, 7.5vw, 33px);
         font-weight: 300;
-        line-height: 1;
+        line-height: 0.95;
         letter-spacing: -0.04em;
     }
 }
 
 .subtitle {
     position: absolute;
-    top: 75%;
+    top: 80%;
     left: 50%;
     display: flex;
     align-items: center;
@@ -135,26 +135,26 @@
     }
 
     .heroLogo {
-        top: 19%;
+        top: 17%;
         width: clamp(92px, 8vw, 124px);
         max-width: 124px;
     }
 
     .title {
-        top: 57%;
+        top: 60%;
 
         span:first-child {
             font-size: clamp(46px, 4.4vw, 68px);
         }
 
         span:last-child {
-            margin-top: 8px;
+            margin-top: 4px;
             font-size: clamp(36px, 3.6vw, 54px);
         }
     }
 
     .subtitle {
-        top: 73%;
+        top: 78%;
         gap: 14px;
         font-size: clamp(11px, 1vw, 15px);
     }
@@ -162,13 +162,13 @@
 
 @media (min-width: 1280px) {
     .heroLogo {
-        top: 20%;
+        top: 18%;
         width: 126px;
         max-width: 126px;
     }
 
     .title {
-        top: 58%;
+        top: 61%;
 
         span:first-child {
             font-size: 68px;
@@ -180,7 +180,7 @@
     }
 
     .subtitle {
-        top: 74%;
+        top: 79%;
         font-size: 15px;
     }
 }
