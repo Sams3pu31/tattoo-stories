@@ -3,38 +3,27 @@
 @use '../../styles/abstracts/breakpoints' as bp;
 
 .foundation {
-    position: relative;
     width: 100%;
     padding-block: vars.$space-4xl vars.$space-5xl;
-    background-color: var(--foundation-background);
+    overflow: hidden;
+    background: var(--foundation-background);
     color: var(--foundation-text);
-    transition:
-        background-color vars.$transition-slow,
-        color vars.$transition-base;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 64px;
-    width: 100%;
-}
-
-.heading {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
+    gap: 84px;
 }
 
 .title {
+    text-align: center;
     font-family: vars.$font-display;
-    font-size: fn.fluid(72, 150);
+    font-size: fn.fluid(68, 144);
     font-weight: vars.$font-weight-regular;
-    line-height: 0.8;
-    letter-spacing: -0.03em;
-    color: var(--foundation-text);
+    line-height: 0.82;
+    letter-spacing: -0.035em;
 }
 
 @include bp.tablet {
@@ -43,18 +32,12 @@
     }
 
     .container {
-        gap: 88px;
+        gap: 104px;
     }
 }
 
 @include bp.laptop {
-    .foundation {
-        display: flex;
-        align-items: center;
-        min-height: 100svh;
-    }
-
     .container {
-        gap: 104px;
+        gap: 120px;
     }
 }

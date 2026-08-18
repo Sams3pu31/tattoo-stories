@@ -1,5 +1,6 @@
 import heroImage from '../../assets/images/hero/hero-reference.jpg'
 import Container from '../../components/ui/Container/Container'
+import LogoMark from '../../components/ui/LogoMark/LogoMark'
 import { useLanguage } from '../../hooks/useLanguage'
 import styles from './Hero.module.scss'
 
@@ -9,39 +10,38 @@ function Hero() {
   return (
     <section
       className={styles.hero}
-      id="hero"
+      id="top"
       aria-labelledby="hero-title"
     >
       <div className={styles.visual} aria-hidden="true">
         <img
-          className={styles.image}
           src={heroImage}
           alt=""
           fetchPriority="high"
         />
-        <div className={styles.imageOverlay} />
+        <div className={styles.overlay} />
       </div>
 
       <Container className={styles.container}>
         <div className={styles.content}>
-          <div className={styles.logoPlaceholder} aria-hidden="true">
-            TS
-          </div>
+          <LogoMark
+            className={styles.heroLogo}
+            tone="white"
+          />
 
-          <h1 className={styles.title} id="hero-title">
+          <h1
+            className={styles.title}
+            id="hero-title"
+          >
             <span>{t.hero.title}</span>
-            <span className={styles.titleSecondary}>
-              {t.hero.subtitle}
-            </span>
+            <span>{t.hero.subtitle}</span>
           </h1>
 
-          <p className={styles.caption}>
+          <div className={styles.subtitle}>
             <span>{t.hero.aboutPeople}</span>
-            <span className={styles.captionDots} aria-hidden="true">
-              •••
-            </span>
+            <span aria-hidden="true">···</span>
             <span>{t.hero.forPeople}</span>
-          </p>
+          </div>
         </div>
       </Container>
     </section>

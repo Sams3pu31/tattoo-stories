@@ -39,6 +39,7 @@ export type Translation = {
       books: string
       cartoons: string
       era: string
+      horsesCoffee: string
     }
     previous: string
     next: string
@@ -48,21 +49,6 @@ export type Translation = {
     title: string
     lead: string
     paragraphs: string[]
-  }
-
-  sketch: {
-    eyebrow: string
-    title: string
-    lead: string
-    text: string
-  }
-
-  consultation: {
-    eyebrow: string
-    title: string
-    lead: string
-    prompt: string
-    final: string
   }
 
   fitting: {

@@ -22,11 +22,10 @@ export const en: Translation = {
 
   intro: {
     eyebrow: 'About',
-    title: 'I’m Anna',
-    lead: 'Tattoos designed around the person.',
-    text:
-      'Tattoos about people, made for people. I don’t copy other artists’ work. I don’t adapt other people’s designs.',
-    note: 'Every tattoo starts with a conversation.',
+    title: 'I’m Anna.',
+    lead: 'I create tattoos that tell people’s stories.',
+    text: 'Sometimes about what matters. Sometimes about what we love.',
+    note: 'Sometimes about things with no name.',
   },
 
   stories: {
@@ -40,6 +39,7 @@ export const en: Translation = {
       books: 'about favorite books',
       cartoons: 'about childhood cartoons',
       era: 'about events that shaped an era',
+      horsesCoffee: 'about a love of horses and coffee',
     },
     previous: 'Previous work',
     next: 'Next work',
@@ -49,44 +49,28 @@ export const en: Translation = {
     title: 'Foundation',
     lead: 'Every tattoo starts with a conversation.',
     paragraphs: [
-      'You can come with a clear idea or no idea at all.',
-      'You can come with a story. Or just say: “I have no idea how to turn this into an image.”',
+      'You can come with a clear idea or with absolutely nothing in mind.',
+      'Show me five random images or give me one strange thought.',
+      'I’ll ask questions, pull it all together, and translate it from human into tattoo language.',
     ],
   },
 
-  sketch: {
-    eyebrow: 'Sketch',
-    title: 'From scratch.',
-    lead: 'No ready-made designs. No copies of other tattoos.',
-    text:
-      'First, we figure out what you want to say. Then we figure out what it should look like.',
-  },
-
-  consultation: {
-    eyebrow: 'Consultation',
-    title: 'You don’t need an idea.',
-    lead: 'Just tell me what matters to you.',
-    prompt: 'Show me twenty random images. Bring me one strange thought.',
-    final:
-      'I’ll ask questions, pull it all together, and translate it from human into tattoo language.',
-  },
-
   fitting: {
-  eyebrow: 'Fitting',
-  title: 'Like clothing.',
-  lead: 'Just more serious.',
-  text:
-    'A tattoo should fit like the perfect piece of clothing — comfortable, versatile, flattering, and made for the body it lives on.',
-  final:
-    'If it does none of that, it becomes a mark that works against the body. Just a shapeless rash of ink.',
-},
+    eyebrow: 'Fitting',
+    title: 'Like clothing.',
+    lead: 'Just more serious.',
+    text:
+      'A tattoo should fit like the perfect piece of clothing — comfortable, versatile, flattering, and made for the body it lives on.',
+    final:
+      'So before the session, we meet one more time. We adjust the size, transfer the design onto your skin, see how it sits on your body, tweak the details, and choose the day for your session.',
+  },
 
   session: {
     eyebrow: 'Session',
-    title: 'You should feel at ease.',
-    lead: 'Cleanliness, sterility, and quality are a given.',
+    title: 'What matters to me is that you feel at ease.',
+    lead: 'Cleanliness, sterility, and quality come as standard.',
     text:
-      'Wear something comfortable. Bring your favorite podcast, a book, your knitting, a snack — anything that helps you settle in.',
+      'Wear something comfortable. Bring your favorite true-crime podcast, a book, your knitting, a snack — anything that helps you settle in.',
     final: 'I’ll take care of the rest.',
   },
 
@@ -96,13 +80,13 @@ export const en: Translation = {
     lead:
       'This is where I’m supposed to say “a personalized approach.” But that’s marketing fluff.',
     text:
-      'These people chose to come to me. Some came back. Some never really left.',
+      'These are the words of people who came to me, then came back — or never really left.',
     final: 'I’d call that pretty convincing.',
   },
 
   finalCta: {
     title: 'So, what’s in your head?',
-    action: 'Tell me',
+    action: 'Tell me…',
   },
 
   booking: {

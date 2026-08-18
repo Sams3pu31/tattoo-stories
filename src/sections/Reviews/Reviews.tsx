@@ -1,14 +1,53 @@
+import { useEffect, useState } from 'react'
 import Container from '../../components/ui/Container/Container'
 import TypedText from '../../components/ui/TypedText/TypedText'
 import { useInView } from '../../hooks/useInView'
 import { useLanguage } from '../../hooks/useLanguage'
-import { useTypingSequence } from '../../hooks/useTypingSequence'
 import styles from './Reviews.module.scss'
+
+type ReviewsStage =
+  | 'waiting'
+  | 'lead'
+  | 'cards'
+  | 'text'
+  | 'final'
+  | 'complete'
 
 function Reviews() {
   const { t } = useLanguage()
-  const { ref, isInView } = useInView<HTMLElement>(0.12)
-  const { completeStep, getState } = useTypingSequence(isInView, 3)
+  const { ref, isInView } = useInView<HTMLElement>(0.1)
+  const [stage, setStage] = useState<ReviewsStage>('waiting')
+
+  useEffect(() => {
+    if (isInView) {
+      setStage((current) =>
+        current === 'waiting' ? 'lead' : current,
+      )
+      return
+    }
+
+    setStage('waiting')
+  }, [isInView])
+
+  useEffect(() => {
+    if (stage !== 'cards') return
+
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    )
+
+    if (reducedMotion.matches) {
+      setStage('text')
+      return
+    }
+
+    const timer = window.setTimeout(
+      () => setStage('text'),
+      1800,
+    )
+
+    return () => window.clearTimeout(timer)
+  }, [stage])
 
   return (
     <section
@@ -16,7 +55,7 @@ function Reviews() {
       className={styles.reviews}
       id="reviews"
       aria-labelledby="reviews-title"
-      data-visible={isInView || undefined}
+      data-stage={stage}
     >
       <Container className={styles.container}>
         <header className={styles.heading}>
@@ -35,11 +74,17 @@ function Reviews() {
         <p className={styles.lead}>
           <TypedText
             text={t.reviews.lead}
-            state={getState(0)}
-            speed={52}
-            startDelay={300}
-            endDelay={500}
-            onComplete={() => completeStep(0)}
+            state={
+              stage === 'waiting'
+                ? 'waiting'
+                : stage === 'lead'
+                  ? 'active'
+                  : 'complete'
+            }
+            speed={34}
+            startDelay={200}
+            endDelay={300}
+            onComplete={() => setStage('cards')}
           />
         </p>
       </Container>
@@ -66,22 +111,35 @@ function Reviews() {
         <p className={styles.text}>
           <TypedText
             text={t.reviews.text}
-            state={getState(1)}
-            speed={48}
-            startDelay={300}
-            endDelay={600}
-            onComplete={() => completeStep(1)}
+            state={
+              stage === 'text'
+                ? 'active'
+                : stage === 'final' ||
+                    stage === 'complete'
+                  ? 'complete'
+                  : 'waiting'
+            }
+            speed={34}
+            startDelay={180}
+            endDelay={350}
+            onComplete={() => setStage('final')}
           />
         </p>
 
         <p className={styles.final}>
           <TypedText
             text={t.reviews.final}
-            state={getState(2)}
-            speed={60}
-            startDelay={350}
-            endDelay={400}
-            onComplete={() => completeStep(2)}
+            state={
+              stage === 'final'
+                ? 'active'
+                : stage === 'complete'
+                  ? 'complete'
+                  : 'waiting'
+            }
+            speed={42}
+            startDelay={220}
+            endDelay={250}
+            onComplete={() => setStage('complete')}
           />
         </p>
       </Container>

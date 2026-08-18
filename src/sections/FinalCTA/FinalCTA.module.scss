@@ -31,66 +31,80 @@
 }
 
 .action {
-    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 18px;
-    padding: 18px 4px;
-    overflow: hidden;
+    padding: 16px 24px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
     color: var(--color-text);
     font-family: vars.$font-body;
-    font-size: fn.fluid(18, 28);
+    font-size: fn.fluid(19, 28);
     font-weight: vars.$font-weight-medium;
     text-decoration: none;
     opacity: 0;
-    transform: translateY(24px);
+    pointer-events: none;
+    transform: translateY(24px) scale(0.96);
     transition:
-        opacity 900ms ease 1800ms,
-        transform 1100ms cubic-bezier(0.22, 1, 0.36, 1) 1800ms;
+        opacity 700ms ease,
+        transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+        background-color vars.$transition-base,
+        color vars.$transition-base;
+
+    &:hover,
+    &:focus-visible {
+        background: var(--color-text);
+        color: var(--color-background);
+    }
+
+    &:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: 6px;
+    }
 }
 
-.action::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 8px;
-    left: 0;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform vars.$transition-base;
+.finalCta[data-stage='action'] .action {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
 }
 
 .arrow {
     display: inline-block;
-    transition: transform vars.$transition-base;
+    animation: arrowHint 4s 1.2s ease-in-out infinite;
 }
 
-.action:hover::after,
-.action:focus-visible::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
+@keyframes arrowHint {
+    0%,
+    68%,
+    100% {
+        transform: translateX(0);
+    }
 
-.action:hover .arrow,
-.action:focus-visible .arrow {
-    transform: translateX(10px);
-}
+    76% {
+        transform: translateX(9px);
+    }
 
-.action:focus-visible {
-    outline: 1px solid currentColor;
-    outline-offset: 8px;
-}
+    84% {
+        transform: translateX(0);
+    }
 
-.finalCta[data-visible] .action {
-    opacity: 1;
-    transform: translateY(0);
+    90% {
+        transform: translateX(4px);
+    }
+
+    95% {
+        transform: translateX(0);
+    }
 }
 
 @include bp.tablet {
     .container {
         gap: 80px;
+    }
+
+    .action {
+        padding: 18px 30px;
     }
 }
 
@@ -102,8 +116,11 @@
 
 @media (prefers-reduced-motion: reduce) {
     .action {
-        opacity: 1;
         transform: none;
         transition: none;
+    }
+
+    .arrow {
+        animation: none;
     }
 }

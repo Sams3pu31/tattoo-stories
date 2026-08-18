@@ -3,10 +3,11 @@
 
 .header {
     position: fixed;
-    z-index: calc(vars.$z-menu + 1);
     top: 0;
+    right: 0;
     left: 0;
-    width: 100%;
+    z-index: 300;
+    color: var(--color-text);
     pointer-events: none;
 }
 
@@ -14,81 +15,105 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     min-height: 72px;
-    color: var(--color-text);
     pointer-events: none;
 }
 
-.container nav {
-    color: var(--color-text);
-    text-shadow:
-        0 0 2px var(--color-background),
-        0 0 8px var(--color-background);
+.logo,
+.actions,
+.menuButton {
+    pointer-events: auto;
+}
+
+.logo {
+    position: relative;
+    z-index: 302;
+    display: block;
+    flex: 0 0 auto;
+    width: 18px;
+    opacity: 0.76;
+    filter: drop-shadow(0 1px 4px var(--color-background));
+    transition:
+        opacity vars.$transition-base,
+        transform vars.$transition-base;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    &:hover,
+    &:focus-visible {
+        opacity: 1;
+        transform: translateY(-1px);
+    }
 }
 
 .actions {
     position: relative;
-    z-index: 2;
+    z-index: 302;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     margin-left: auto;
-    flex-shrink: 0;
-    color: var(--color-text);
-    pointer-events: auto;
-    filter: drop-shadow(0 0 2px var(--color-background)) drop-shadow(0 0 5px var(--color-background));
+    filter: drop-shadow(0 1px 4px var(--color-background));
 }
 
 .menuButton {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    z-index: 304;
+    display: block;
     width: 38px;
     height: 38px;
     padding: 0;
-    flex-shrink: 0;
     border: 0;
     background: transparent;
     color: inherit;
     cursor: pointer;
-    pointer-events: auto;
 
     span {
-        display: block;
-        width: 25px;
-        height: 2px;
-        background-color: currentColor;
+        position: absolute;
+        left: 8px;
+        width: 22px;
+        height: 1px;
+        background: currentColor;
         transition:
-            transform vars.$transition-base,
-            opacity vars.$transition-fast;
+            top vars.$transition-base,
+            transform vars.$transition-base;
     }
 
-    &[data-open] {
-        span {
-            position: absolute;
-        }
+    span:first-child {
+        top: 15px;
+    }
 
-        span:first-child {
-            transform: rotate(45deg);
-        }
+    span:last-child {
+        top: 22px;
+    }
 
-        span:last-child {
-            transform: rotate(-45deg);
-        }
+    &[data-open] span:first-child {
+        top: 19px;
+        transform: rotate(45deg);
+    }
+
+    &[data-open] span:last-child {
+        top: 19px;
+        transform: rotate(-45deg);
+    }
+
+    &:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: 2px;
     }
 }
 
 .header[data-menu-open] {
-    .container {
-        color: var(--color-text);
-    }
+    z-index: 500;
 
-    .actions {
-        filter: none;
+    .logo,
+    .actions,
+    .menuButton {
+        z-index: 502;
     }
 }
 
@@ -97,18 +122,22 @@
         min-height: 78px;
     }
 
+    .logo {
+        width: 20px;
+    }
+
     .actions {
-        gap: 10px;
+        gap: 8px;
     }
 }
 
 @include bp.laptop {
     .container {
-        min-height: 88px;
+        min-height: 84px;
     }
 
-    .actions {
-        gap: 14px;
+    .logo {
+        width: 22px;
     }
 
     .menuButton {

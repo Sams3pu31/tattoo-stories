@@ -1,11 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import TypedText from '../../components/ui/TypedText/TypedText'
 import { useInView } from '../../hooks/useInView'
-import { useScrollProgress } from '../../hooks/useScrollProgress'
-import {
-  useTypingSequence,
-  type TypingState,
-} from '../../hooks/useTypingSequence'
 import styles from './FoundationTimeline.module.scss'
 
 type FoundationTimelineProps = {
@@ -13,156 +8,265 @@ type FoundationTimelineProps = {
   paragraphs: string[]
 }
 
-const NORMAL_SPEED = 30
-const SCROLL_SPEED = 16
+type FoundationStage =
+  | 'waiting'
+  | 'lead'
+  | 'idea'
+  | 'gather'
+  | 'final'
+  | 'complete'
+
+const GATHER_DURATION = 5200
+const PROMPT_START_DELAY = 180
 
 function FoundationTimeline({
   lead,
   paragraphs,
 }: FoundationTimelineProps) {
-  const textCount = paragraphs.length + 1
-  const { ref: visibilityRef, isInView } =
-    useInView<HTMLDivElement>(0.04)
+  const { ref, isInView } = useInView<HTMLDivElement>(0.08)
+  const progressRef = useRef<HTMLDivElement>(null)
+  const [stage, setStage] = useState<FoundationStage>('waiting')
 
-  const trackRef = useRef<HTMLDivElement>(null)
-  const textBlockRefs = useRef<Array<HTMLDivElement | null>>([])
-  const scrollUnlockedRef = useRef(-1)
+  const idea = paragraphs[0] ?? ''
+  const prompt = paragraphs[1] ?? ''
+  const final = paragraphs[2] ?? ''
 
-  const [autoUnlockedIndex, setAutoUnlockedIndex] = useState(-1)
-  const [scrollUnlockedIndex, setScrollUnlockedIndex] = useState(-1)
+  const promptSpeed = useMemo(() => {
+    const length = Math.max(1, Array.from(prompt).length)
 
-  const { activeIndex, completeStep } = useTypingSequence(
-    isInView,
-    textCount,
-  )
-
-  const handleScrollProgress = useCallback((progress: number) => {
-    const track = trackRef.current
-    if (!track) return
-
-    const trackRect = track.getBoundingClientRect()
-    const dotY = trackRect.top + trackRect.height * progress
-    let reachedIndex = -1
-
-    textBlockRefs.current.forEach((block, index) => {
-      if (!block) return
-
-      const blockRect = block.getBoundingClientRect()
-      const triggerY =
-        blockRect.top + Math.min(24, blockRect.height * 0.2)
-
-      if (dotY >= triggerY) {
-        reachedIndex = index
-      }
-    })
-
-    if (reachedIndex <= scrollUnlockedRef.current) return
-
-    scrollUnlockedRef.current = reachedIndex
-    setScrollUnlockedIndex(reachedIndex)
-  }, [])
-
-  const timelineRef =
-    useScrollProgress<HTMLDivElement>(handleScrollProgress)
-
-  const setTimelineRef = useCallback(
-    (element: HTMLDivElement | null) => {
-      timelineRef.current = element
-      visibilityRef.current = element
-    },
-    [timelineRef, visibilityRef],
-  )
+    return Math.max(
+      28,
+      Math.floor(
+        (GATHER_DURATION - PROMPT_START_DELAY - 150) / length,
+      ),
+    )
+  }, [prompt])
 
   useEffect(() => {
-    if (!isInView) {
-      setAutoUnlockedIndex(-1)
-      setScrollUnlockedIndex(-1)
-      scrollUnlockedRef.current = -1
+    if (isInView) {
+      setStage((current) =>
+        current === 'waiting'
+          ? 'lead'
+          : current,
+      )
       return
     }
 
-    const timers = Array.from({ length: textCount }, (_, index) =>
-      window.setTimeout(() => {
-        setAutoUnlockedIndex((current) => Math.max(current, index))
-      }, 450 + index * 1250),
+    setStage('waiting')
+  }, [isInView])
+
+  useEffect(() => {
+    if (stage !== 'gather') return
+
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
     )
 
+    if (reducedMotion.matches) {
+      setStage('final')
+      return
+    }
+
+    const timer = window.setTimeout(
+      () => setStage('final'),
+      GATHER_DURATION,
+    )
+
+    return () => window.clearTimeout(timer)
+  }, [stage])
+
+  useEffect(() => {
+    const node = progressRef.current
+
+    if (!node) return
+
+    let frame = 0
+
+    const updateProgress = () => {
+      frame = 0
+
+      const rect = node.getBoundingClientRect()
+      const start = window.innerHeight * 0.82
+      const end = window.innerHeight * 0.18
+      const distance = rect.height + start - end
+
+      const progress = Math.min(
+        1,
+        Math.max(
+          0,
+          (start - rect.top) / distance,
+        ),
+      )
+
+      node.style.setProperty(
+        '--scroll-progress',
+        String(progress),
+      )
+    }
+
+    const scheduleUpdate = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(updateProgress)
+    }
+
+    updateProgress()
+
+    window.addEventListener('scroll', scheduleUpdate, {
+      passive: true,
+    })
+    window.addEventListener('resize', scheduleUpdate)
+
     return () => {
-      timers.forEach((timer) => window.clearTimeout(timer))
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+
+      if (frame) {
+        window.cancelAnimationFrame(frame)
+      }
     }
-  }, [isInView, textCount])
-
-  const unlockedIndex = Math.max(
-    autoUnlockedIndex,
-    scrollUnlockedIndex,
-  )
-
-  const getTextState = (index: number): TypingState => {
-    if (!isInView) return 'waiting'
-    if (index < activeIndex) return 'complete'
-
-    if (index === activeIndex && index <= unlockedIndex) {
-      return 'active'
-    }
-
-    return 'waiting'
-  }
-
-  const getTextSpeed = (index: number) =>
-    index <= scrollUnlockedIndex ? SCROLL_SPEED : NORMAL_SPEED
+  }, [])
 
   return (
-    <div ref={setTimelineRef} className={styles.timeline}>
-      <div ref={trackRef} className={styles.track} aria-hidden="true">
-        <span className={styles.trackProgress} />
-        <span className={styles.dot} />
-      </div>
-
+    <div
+      ref={ref}
+      className={styles.timeline}
+      data-stage={stage}
+    >
       <div
-        ref={(element) => {
-          textBlockRefs.current[0] = element
-        }}
-        className={styles.textBlock}
+        ref={progressRef}
+        className={styles.progressArea}
       >
-        <p className={styles.lead}>
-          <TypedText
-            text={lead}
-            state={getTextState(0)}
-            speed={getTextSpeed(0)}
-            startDelay={100}
-            endDelay={260}
-            onComplete={() => completeStep(0)}
-          />
-        </p>
-      </div>
+        <div
+          className={styles.track}
+          aria-hidden="true"
+        >
+          <span className={styles.trackProgress} />
+          <span className={styles.dot} />
+        </div>
 
-      {paragraphs.map((paragraph, index) => {
-        const stepIndex = index + 1
+        <div className={styles.block}>
+          <p className={styles.lead}>
+            <TypedText
+              text={lead}
+              state={
+                stage === 'waiting'
+                  ? 'waiting'
+                  : stage === 'lead'
+                    ? 'active'
+                    : 'complete'
+              }
+              speed={38}
+              startDelay={180}
+              endDelay={300}
+              onComplete={() => setStage('idea')}
+            />
+          </p>
+        </div>
 
-        return (
-          <div className={styles.group} key={`${index}-${paragraph}`}>
-            <div className={styles.spacer} aria-hidden="true" />
+        <div className={styles.block}>
+          <p className={styles.text}>
+            <TypedText
+              text={idea}
+              state={
+                stage === 'idea'
+                  ? 'active'
+                  : stage === 'gather' ||
+                      stage === 'final' ||
+                      stage === 'complete'
+                    ? 'complete'
+                    : 'waiting'
+              }
+              speed={34}
+              startDelay={120}
+              endDelay={300}
+              onComplete={() => setStage('gather')}
+            />
+          </p>
+        </div>
 
-            <div
-              ref={(element) => {
-                textBlockRefs.current[stepIndex] = element
-              }}
-              className={styles.textBlock}
+        <div className={styles.gather}>
+          <p className={styles.prompt}>
+            <TypedText
+              text={prompt}
+              state={
+                stage === 'gather'
+                  ? 'active'
+                  : stage === 'final' ||
+                      stage === 'complete'
+                    ? 'complete'
+                    : 'waiting'
+              }
+              speed={promptSpeed}
+              startDelay={PROMPT_START_DELAY}
+              endDelay={0}
+            />
+          </p>
+
+          <div
+            className={styles.art}
+            aria-hidden="true"
+          >
+            <svg
+              className={styles.artSvg}
+              viewBox="0 0 320 280"
+              fill="none"
             >
-              <p className={styles.paragraph}>
-                <TypedText
-                  text={paragraph}
-                  state={getTextState(stepIndex)}
-                  speed={getTextSpeed(stepIndex)}
-                  startDelay={100}
-                  endDelay={280}
-                  onComplete={() => completeStep(stepIndex)}
+              <g className={`${styles.piece} ${styles.circle}`}>
+                <circle cx="160" cy="140" r="76" />
+              </g>
+
+              <g className={`${styles.piece} ${styles.triangle}`}>
+                <path d="M160 75 L216 177 L104 177 Z" />
+              </g>
+
+              <g className={`${styles.piece} ${styles.diamond}`}>
+                <rect
+                  x="118"
+                  y="98"
+                  width="84"
+                  height="84"
+                  rx="2"
                 />
-              </p>
-            </div>
+              </g>
+
+              <g className={`${styles.piece} ${styles.arcs}`}>
+                <path d="M104 140 C116 92 204 92 216 140" />
+                <path d="M104 140 C116 188 204 188 216 140" />
+              </g>
+
+              <g className={`${styles.piece} ${styles.line}`}>
+                <path d="M78 140 H242" />
+              </g>
+
+              <circle
+                className={styles.center}
+                cx="160"
+                cy="140"
+                r="7"
+              />
+            </svg>
           </div>
-        )
-      })}
+        </div>
+
+        <div className={styles.block}>
+          <p className={styles.final}>
+            <TypedText
+              text={final}
+              state={
+                stage === 'final'
+                  ? 'active'
+                  : stage === 'complete'
+                    ? 'complete'
+                    : 'waiting'
+              }
+              speed={36}
+              startDelay={180}
+              endDelay={250}
+              onComplete={() => setStage('complete')}
+            />
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

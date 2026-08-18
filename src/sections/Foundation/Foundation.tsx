@@ -13,11 +13,12 @@ function Foundation() {
       aria-labelledby="foundation-title"
     >
       <Container className={styles.container}>
-        <header className={styles.heading}>
-          <h2 className={styles.title} id="foundation-title">
-            {t.foundation.title}
-          </h2>
-        </header>
+        <h2
+          className={styles.title}
+          id="foundation-title"
+        >
+          {t.foundation.title}
+        </h2>
 
         <FoundationTimeline
           lead={t.foundation.lead}
