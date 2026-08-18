@@ -1,6 +1,7 @@
 import Footer from '../components/layout/Footer/Footer'
 import Header from '../components/layout/Header/Header'
 import FloatingBookingButton from '../components/ui/FloatingBookingButton/FloatingBookingButton'
+import InkDrop from '../features/InkDrop/InkDrop'
 import Booking from '../sections/Booking/Booking'
 import FinalCTA from '../sections/FinalCTA/FinalCTA'
 import Fitting from '../sections/Fitting/Fitting'
@@ -17,6 +18,7 @@ function App() {
     <>
       <Header />
       <FloatingBookingButton />
+      <InkDrop />
 
       <main>
         <Hero />

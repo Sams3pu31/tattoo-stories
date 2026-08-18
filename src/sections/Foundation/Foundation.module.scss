@@ -26,11 +26,6 @@
     line-height: 0.9;
     letter-spacing: -0.025em;
     text-align: center;
-    opacity: 0;
-    transform: translate3d(0, 12px, 0);
-    transition:
-        opacity 650ms ease,
-        transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .story {
@@ -42,37 +37,10 @@
     width: 100%;
     max-width: 760px;
     margin-top: 92px;
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: -42px;
-        bottom: -42px;
-        left: 50%;
-        width: 1px;
-        background: rgb(255 255 255 / 20%);
-        transform: translateX(-50%);
-    }
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: -46px;
-        left: 50%;
-        z-index: 2;
-        width: 9px;
-        height: 9px;
-        border: 1px solid currentColor;
-        border-radius: 50%;
-        background: var(--foundation-background, #302c2a);
-        opacity: 0.65;
-        transform: translateX(-50%);
-    }
 }
 
 .block {
     position: relative;
-    z-index: 1;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -82,28 +50,6 @@
     transition:
         opacity 650ms ease,
         transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
-
-    &::before {
-        content: '';
-        position: absolute;
-        inset: -18px -12px;
-        z-index: -1;
-        background: var(--foundation-background, #302c2a);
-    }
-
-    &:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        bottom: -61px;
-        left: 50%;
-        width: 9px;
-        height: 9px;
-        border: 1px solid currentColor;
-        border-radius: 50%;
-        background: var(--foundation-background, #302c2a);
-        opacity: 0.65;
-        transform: translate(-50%, 50%);
-    }
 }
 
 .lead,
@@ -130,7 +76,6 @@
 }
 
 .foundation[data-visible] {
-    .title,
     .block {
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -157,21 +102,6 @@
     .story {
         gap: 132px;
         margin-top: 108px;
-
-        &::before {
-            top: -48px;
-            bottom: -48px;
-        }
-
-        &::after {
-            top: -52px;
-        }
-    }
-
-    .block {
-        &:not(:last-child)::after {
-            bottom: -71px;
-        }
     }
 }
 
@@ -196,7 +126,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .title,
     .block {
         opacity: 1;
         transform: none;

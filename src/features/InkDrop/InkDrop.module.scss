@@ -1,0 +1,80 @@
+.motionPaths {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    overflow: visible;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.inkDrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 14px;
+    height: 18px;
+    margin-top: -9px;
+    margin-left: -7px;
+    opacity: 0;
+    color: #171514;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.inkDrop[data-visible='true'] {
+    opacity: 1;
+}
+
+.shape {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    will-change: transform, opacity;
+}
+
+.dropPath,
+.blobPath {
+    fill: currentColor;
+    stroke: #f4efeb;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+    paint-order: stroke fill;
+    transform-origin: center;
+}
+
+.blobPath {
+    opacity: 0;
+}
+
+.splash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: 78px;
+    height: 78px;
+    overflow: visible;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+
+    path {
+        fill: #171514;
+        opacity: 0;
+        transform-box: fill-box;
+        transform-origin: center;
+        will-change: transform, opacity;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .inkDrop,
+    .motionPaths {
+        display: none;
+    }
+}

@@ -21,11 +21,13 @@ export const en: Translation = {
   },
 
   intro: {
-  eyebrow: 'Hello',
-  title: 'I’m Anna.',
-  lead: 'I create tattoos\nthat tell people’s\nstories.',
-  text: 'About what matters.\nAbout what we love.',
-  note: 'About things\nwith no name.',
+  eyebrow: 'About',
+  title: 'Hello',
+  lead: 'I’m Anna.',
+  text:
+    'I create tattoos\nthat tell\npeople’s stories.',
+  note:
+    'About what matters.\nAbout what is loved.\nAbout things\nthat have no name.',
 },
 
   stories: {

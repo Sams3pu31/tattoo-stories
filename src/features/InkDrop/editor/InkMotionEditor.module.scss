@@ -1,0 +1,365 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9000;
+    overflow: visible;
+
+    /*
+     * Здесь ВАЖНО auto.
+     * Иначе GSAP-editor
+     * не получает мышь.
+     */
+    pointer-events: auto;
+}
+
+.path,
+.pathActive {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.path {
+    stroke: rgba(23, 21, 20, 0.1);
+
+    stroke-width: 2px;
+    stroke-dasharray: 6 6;
+
+    pointer-events: none;
+}
+
+.pathActive {
+    stroke: #ff2d8d;
+    stroke-width: 3px;
+    stroke-dasharray: 7 5;
+
+    pointer-events: stroke;
+    cursor: grab;
+}
+
+.pathActive:active {
+    cursor: grabbing;
+}
+
+.start,
+.impact,
+.dock {
+    pointer-events: none;
+}
+
+.start {
+    fill: rgba(47, 196, 112, 0.22);
+
+    stroke: #2fc470;
+    stroke-width: 2px;
+}
+
+.impact {
+    fill: rgba(255, 55, 75, 0.22);
+
+    stroke: #ff374b;
+    stroke-width: 2px;
+}
+
+.dock {
+    fill: rgba(0, 122, 255, 0.22);
+
+    stroke: #007aff;
+    stroke-width: 2px;
+}
+
+.drawSurface {
+    position: fixed;
+    inset: 0;
+    z-index: 99990;
+
+    cursor: crosshair;
+    touch-action: none;
+    user-select: none;
+}
+
+.drawHint {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    background: rgba(20, 20, 20, 0.9);
+
+    color: #fff;
+
+    font-family: system-ui, sans-serif;
+
+    font-size: 11px;
+
+    pointer-events: none;
+
+    transform: translateX(-50%);
+
+    backdrop-filter: blur(10px);
+}
+
+.panel {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+
+    z-index: 1000000;
+
+    width: 250px;
+    max-height: calc(100vh - 20px);
+
+    padding: 10px;
+
+    overflow-y: auto;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    border-radius: 10px;
+
+    background: rgba(20, 20, 20, 0.94);
+
+    color: #fff;
+
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        sans-serif;
+
+    font-size: 11px;
+    line-height: 1.25;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.24);
+
+    backdrop-filter: blur(10px);
+
+    pointer-events: auto;
+}
+
+.panelTitle {
+    margin-bottom: 8px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 5px 9px;
+
+    margin-bottom: 8px;
+
+    font-size: 10px;
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    i {
+        display: block;
+
+        width: 6px;
+        height: 6px;
+
+        border-radius: 50%;
+    }
+}
+
+.startKey {
+    border: 1px solid #2fc470;
+
+    background: rgba(47, 196, 112, 0.3);
+}
+
+.impactKey {
+    border: 1px solid #ff374b;
+
+    background: rgba(255, 55, 75, 0.3);
+}
+
+.dockKey {
+    border: 1px solid #007aff;
+
+    background: rgba(0, 122, 255, 0.3);
+}
+
+.segments {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    button {
+        width: 100%;
+
+        padding: 6px 7px;
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+
+        border-radius: 6px;
+
+        background: rgba(255, 255, 255, 0.05);
+
+        color: inherit;
+        font: inherit;
+
+        text-align: left;
+        cursor: pointer;
+
+        transition:
+            border-color 150ms ease,
+            background 150ms ease,
+            opacity 150ms ease;
+
+        &:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        &[data-active] {
+            border-color: #ff2d8d;
+
+            background: rgba(255, 45, 141, 0.16);
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+    }
+}
+
+.drawActions {
+    margin-top: 7px;
+
+    button {
+        width: 100%;
+
+        padding: 7px;
+
+        border: 1px solid rgba(255, 45, 141, 0.55);
+
+        border-radius: 6px;
+
+        background: rgba(255, 45, 141, 0.17);
+
+        color: #fff;
+
+        font: inherit;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        &:hover {
+            background: rgba(255, 45, 141, 0.25);
+        }
+    }
+}
+
+.actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 4px;
+    margin-top: 4px;
+
+    button {
+        padding: 6px 4px;
+
+        border: 0;
+        border-radius: 6px;
+
+        background: #fff;
+        color: #111;
+
+        font: inherit;
+        font-size: 10px;
+        line-height: 1.15;
+
+        cursor: pointer;
+
+        transition: opacity 150ms ease;
+
+        &:hover:not(:disabled) {
+            opacity: 0.88;
+        }
+
+        &:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        &:nth-child(3),
+        &:nth-child(4) {
+            background: rgba(255, 255, 255, 0.12);
+
+            color: #fff;
+        }
+    }
+}
+
+.message {
+    margin-top: 6px;
+
+    color: #93f5ba;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.help {
+    margin-top: 7px;
+    padding-top: 7px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: rgba(255, 255, 255, 0.46);
+
+    font-size: 9px;
+    line-height: 1.35;
+}
+
+@media (max-width: 720px) {
+    .panel {
+        right: 6px;
+        bottom: 6px;
+
+        width: 220px;
+
+        max-height: calc(100vh - 12px);
+
+        padding: 8px;
+    }
+
+    .panelTitle {
+        margin-bottom: 6px;
+        font-size: 12px;
+    }
+
+    .legend {
+        margin-bottom: 6px;
+        font-size: 9px;
+    }
+
+    .segments {
+        gap: 3px;
+
+        button {
+            padding: 5px 6px;
+        }
+    }
+
+    .help {
+        font-size: 8px;
+    }
+}

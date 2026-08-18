@@ -1,0 +1,30 @@
+.splash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    width: 96px;
+    height: 54px;
+    overflow: visible;
+    opacity: 0;
+    color: #171514;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.base,
+.particle,
+.dot {
+    fill: currentColor;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.base {
+    opacity: 0;
+}
+
+.particle,
+.dot {
+    opacity: 0;
+}

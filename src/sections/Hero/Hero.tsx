@@ -37,10 +37,12 @@ function Hero() {
 
                 <Container className={styles.container}>
                     <div className={styles.content}>
-                        <LogoMark
-                            className={styles.heroLogo}
-                            tone="white"
-                        />
+                        <div data-ink-source="hero-logo">
+                            <LogoMark
+                                className={styles.heroLogo}
+                                tone="white"
+                            />
+                        </div>
 
                         <h1
                             className={styles.title}
@@ -50,7 +52,10 @@ function Hero() {
                             <span>{t.hero.subtitle}</span>
                         </h1>
 
-                        <div className={styles.subtitle}>
+                        <div
+                            className={styles.subtitle}
+                            data-ink-anchor="hero-release"
+                        >
                             <span>{t.hero.aboutPeople}</span>
                             <span aria-hidden="true">···</span>
                             <span>{t.hero.forPeople}</span>
