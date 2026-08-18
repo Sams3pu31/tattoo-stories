@@ -13,37 +13,43 @@ function Hero() {
       id="top"
       aria-labelledby="hero-title"
     >
-      <div className={styles.visual} aria-hidden="true">
+      <div className={styles.frame}>
         <img
+          className={styles.image}
           src={heroImage}
           alt=""
+          aria-hidden="true"
           fetchPriority="high"
         />
-        <div className={styles.overlay} />
-      </div>
 
-      <Container className={styles.container}>
-        <div className={styles.content}>
-          <LogoMark
-            className={styles.heroLogo}
-            tone="white"
-          />
+        <div
+          className={styles.overlay}
+          aria-hidden="true"
+        />
 
-          <h1
-            className={styles.title}
-            id="hero-title"
-          >
-            <span>{t.hero.title}</span>
-            <span>{t.hero.subtitle}</span>
-          </h1>
+        <Container className={styles.container}>
+          <div className={styles.content}>
+            <LogoMark
+              className={styles.heroLogo}
+              tone="white"
+            />
 
-          <div className={styles.subtitle}>
-            <span>{t.hero.aboutPeople}</span>
-            <span aria-hidden="true">···</span>
-            <span>{t.hero.forPeople}</span>
+            <h1
+              className={styles.title}
+              id="hero-title"
+            >
+              <span>{t.hero.title}</span>
+              <span>{t.hero.subtitle}</span>
+            </h1>
+
+            <div className={styles.subtitle}>
+              <span>{t.hero.aboutPeople}</span>
+              <span aria-hidden="true">···</span>
+              <span>{t.hero.forPeople}</span>
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </section>
   )
 }
