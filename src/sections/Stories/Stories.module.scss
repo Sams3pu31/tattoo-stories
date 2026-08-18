@@ -21,6 +21,7 @@
     align-items: center;
     gap: 26px;
     margin-bottom: 48px;
+    padding-inline: vars.$page-padding-mobile;
     text-align: center;
 }
 
@@ -84,14 +85,15 @@
 
 .track {
     display: flex;
-    gap: 32px;
-    width: 100%;
-    padding-inline: vars.$page-padding-mobile;
+    gap: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 0;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    scroll-padding-inline: vars.$page-padding-mobile;
+    scroll-padding-inline: 0;
     scrollbar-width: none;
     overscroll-behavior-inline: contain;
     -webkit-overflow-scrolling: touch;
@@ -102,7 +104,8 @@
 }
 
 .slide {
-    flex: 0 0 calc(100vw - 56px);
+    flex: 0 0 100vw;
+    width: 100vw;
     min-width: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -119,7 +122,8 @@
     display: flex;
     align-items: flex-end;
     min-height: 2.3em;
-    margin-bottom: 18px;
+    margin: 0 0 18px;
+    padding-inline: vars.$page-padding-mobile;
     font-family: vars.$font-display;
     font-size: fn.fluid(28, 46);
     font-weight: vars.$font-weight-regular;
@@ -132,7 +136,7 @@
 .media {
     position: relative;
     width: 100%;
-    aspect-ratio: 0.72;
+    aspect-ratio: 0.82;
     overflow: hidden;
     background-color: var(--color-background-light);
 }
@@ -148,8 +152,8 @@
 
 .number {
     position: absolute;
-    bottom: 8px;
-    left: 10px;
+    bottom: 10px;
+    left: vars.$page-padding-mobile;
     font-family: vars.$font-display;
     font-size: fn.fluid(52, 90);
     font-weight: vars.$font-weight-regular;
@@ -159,8 +163,9 @@
 }
 
 .caption {
-    max-width: 24ch;
-    margin-top: 16px;
+    max-width: 28ch;
+    margin: 16px 0 0;
+    padding-inline: vars.$page-padding-mobile;
     font-family: vars.$font-body;
     font-size: fn.rem(11);
     font-weight: 300;
@@ -175,32 +180,56 @@
 
     .header {
         margin-bottom: 64px;
+        padding-inline: vars.$page-padding-tablet;
     }
 
     .track {
-        gap: 28px;
-        padding-inline: vars.$page-padding-tablet;
-        scroll-padding-inline: vars.$page-padding-tablet;
+        gap: 0;
     }
 
     .slide {
-        flex-basis: calc((100vw - 104px) / 2);
+        flex-basis: 50vw;
+        width: 50vw;
+    }
+
+    .category {
+        padding-inline: vars.$page-padding-tablet;
+    }
+
+    .caption {
+        padding-inline: vars.$page-padding-tablet;
+    }
+
+    .number {
+        left: vars.$page-padding-tablet;
+    }
+
+    .media {
+        aspect-ratio: 0.78;
     }
 }
 
 @include bp.laptop {
     .header {
         margin-bottom: 72px;
-    }
-
-    .track {
-        gap: 28px;
-        padding-inline: max(vars.$page-padding-desktop, calc((100vw - vars.$container-max-width) / 2 + vars.$page-padding-desktop));
-        scroll-padding-inline: max(vars.$page-padding-desktop, calc((100vw - vars.$container-max-width) / 2 + vars.$page-padding-desktop));
+        padding-inline: vars.$page-padding-desktop;
     }
 
     .slide {
-        flex-basis: calc((min(100vw, vars.$container-max-width) - 184px) / 3);
+        flex-basis: calc(100vw / 3);
+        width: calc(100vw / 3);
+    }
+
+    .category {
+        padding-inline: 28px;
+    }
+
+    .caption {
+        padding-inline: 28px;
+    }
+
+    .number {
+        left: 28px;
     }
 
     .card {
